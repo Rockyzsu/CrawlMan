@@ -28,8 +28,13 @@ def spider():
             print link
             post_fix=link.split('.')[-1]
             full_path= filename+'.'+post_fix
-            urllib.urlretrieve(link, filename=os.path.join(target_dir,full_path))
-            time.sleep(1)
+            filename = os.path.join(target_dir, full_path)
+            # 修改这一段，多线程下载
+            if not os.path.isfile(filename):
+                urllib.urlretrieve(link, filename)
+                time.sleep(1)
+            else:
+                continue
 
 
 if __name__ == '__main__':
