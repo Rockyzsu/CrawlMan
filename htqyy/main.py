@@ -62,10 +62,10 @@ def getUrl(url):
 	if (not os.path.exists(music_file)) or (not r_music):
 		saveToFile(r_music,music_file)
 
-def htqyy():
+def htqyy(start=1,end=7):
 	base_url='http://www.htqyy.com/play/'
 	url_new='http://www.htqyy.com/genre/musicList/9?pageIndex={}&pageSize=20&order=hot'
-	for page in range(5,7):
+	for page in range(start,end):
 		print 'page {} is downloading'.format(page)
 		r=download(url_new.format(page))
 		# print r.text
@@ -94,5 +94,9 @@ def main():
 
 
 if __name__ == '__main__':
+	data_path = os.path.join(os.path.dirname(__file__),'data')
+	if not os.path.exists(data_path):
+		os.mkdir(data_path)
+	os.chdir(data_path)
 	main()
 	print 'End'
