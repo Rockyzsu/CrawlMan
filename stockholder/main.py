@@ -2,10 +2,12 @@
 import requests
 from lxml import etree
 import pymongo
-
+import tushare as ts
 client = pymongo.MongoClient('localhost')
 doc = client['stock']['shareholder']
+
 __author__ = 'Rocky'
+
 '''
 http://30daydo.com
 Email: weigesysu@qq.com
@@ -27,16 +29,35 @@ def getContent(code):
 
 def parser(code):
     text = getContent(code,)
+    document={}
     if text is not None:
         tree = etree.HTML(text)
-        name = tree.xpath('//div[@id="dateTable"]/table/tr/td[1]')
-        percent=tree.xpath('//div[@id="dateTable"]/table/tr/td[2]')
-        number=tree.xpath('//div[@id="dateTable"]/table/tr/td[3]')
+        name = tree.xpath('//div[@id="dateTable"]/table/tr/td[1]/text()')
+        percent = tree.xpath('//div[@id="dateTable"]/table/tr/td[2]/text()')
+        number = tree.xpath('//div[@id="dateTable"]/table/tr/td[3]/text()')
+        # print name
+        # print percent
+        # print number
+        d = {}
+        for index,value in enumerate(name):
+            # print index
+            k = name[index]
+            p=percent[index]
+            n=number[index]
+            if '.' in k:
+                k=k.replace('.','_')
+            d[k]=(p,n)
+    document[code]=d
+    doc.insert(document)
 
+def all_stocks():
+    df = ts.get_stock_basics()
+    for i in df.index:
+        parser(i)
 
 def main():
-    pass
-
+    # parser('000011')
+    all_stocks()
 
 if __name__ == '__main__':
     main()
