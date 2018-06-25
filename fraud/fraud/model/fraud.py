@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import Column, String , DateTime, Integer, Text
 from sqlalchemy.ext.declarative import declarative_base
-import db_config
+from fraud.model import db_config
 import datetime
 
 Base = declarative_base()
 
 class Fraud(Base):
-    __tablename__ = 'frauds'
+    __tablename__ = 'tb_frauds2'
 
     id = Column(Integer, primary_key=True)
-    executed_name = Column(String(50))
+    executed_name = Column(String(300))
     gender = Column(String(10))
     age = Column(String(10))
     identity_number = Column(String(50))

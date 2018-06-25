@@ -3,7 +3,8 @@ from sqlalchemy.orm import sessionmaker
 import redis
 
 
-engine = create_engine('mysql+pymysql://root:123456z@localhost:3306/db_parker?charset=utf8')
+engine = create_engine('mysql+pymysql://root:123456z@localhost:3306/spider?charset=utf8')
+# engine = create_engine('mysql+pymysql://crawler:Crawler@1234@10.18.4.211:3367/spider?charset=utf8')
 DBSession = sessionmaker(bind=engine)
 
 
@@ -17,5 +18,6 @@ class RedisPool:
         pool = redis.ConnectionPool(
             host=self.client_host,
             port=self.client_port,
-            db=self.client_db)
+            db=self.client_db,
+            decode_responses=True)
         return redis.StrictRedis(connection_pool=pool)

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from .model.fraud import Fraud
-from .model.db_config import DBSession, RedisPool
+from fraud.model.fraud import Fraud
+from fraud.model.db_config import DBSession, RedisPool
 from scrapy.exceptions import DropItem
 import datetime
-
+import json
 class FraudPipeline(object):
 
     def open_spider(self, spider):
         self.session = DBSession()
 
     def process_item(self, item, spider):
-        # item_dict = json.dumps(dict(item)).decode('unicode-escape')
+        # item = json.dumps(dict(item)).decode('unicode-escape')
         f = Fraud(executed_name=item['executed_name'],
                   gender=item['gender'],
                   age=item['age'],
@@ -26,8 +26,10 @@ class FraudPipeline(object):
         self.session.add(f)
         try:
             self.session.commit()
-        except:
+        except Exception as e:
+            print(e)
             self.session.rollback()
+
         return item
 
     def close_spider(self, spider):

@@ -56,8 +56,7 @@ class FraudSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
-
-
+'''
 class DynamicProxyMiddleware(object):
     def process_request(self, request, spider):
         # time.sleep(1)
@@ -96,3 +95,4 @@ class DynamicProxyMiddleware(object):
         # print authHeader
 
         return auth_header
+'''

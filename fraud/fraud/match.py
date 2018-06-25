@@ -33,9 +33,9 @@ while line:
 
 f.close()
 session.close()
-print '样本总量：%s' % total_num
-print '匹配成功数量：%s' % match_num
-print '匹配率：%s' % ((match_num/total_num) * 100), '%'
-print '姓名身份证号匹配成功个数：%s' % name_match_num
-print '姓名身份证号匹配率：%s' % ((name_match_num/match_num) * 100), '%'
+print('样本总量：%s' % total_num)
+print('匹配成功数量：%s' % match_num)
+print('匹配率：%s' % ((match_num/total_num) * 100), '%')
+print('姓名身份证号匹配成功个数：%s' % name_match_num)
+print('姓名身份证号匹配率：%s' % ((name_match_num/match_num) * 100), '%')
 
