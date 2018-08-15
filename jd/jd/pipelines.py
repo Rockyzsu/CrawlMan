@@ -9,7 +9,7 @@ import pymongo
 class JDPipeline(object):
     def __init__(self):
         self.mongo=pymongo.MongoClient('10.18.6.102')
-        self.doc=self.mongo['spider']['jd_book']
+        self.doc=self.mongo['spider']['jd_book1']
     def process_item(self, item, spider):
         self.doc.insert(dict(item))
 

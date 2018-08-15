@@ -88,3 +88,22 @@ ROBOTSTXT_OBEY = False
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+LOG_LEVEL = 'DEBUG'
+# LOG_FILE = 'scrapy.log'
+#添加splash服务器地址：
+SPLASH_URL = 'http://10.18.6.102:8050'
+#在你的下载器中间件：download_middleware 里面启用如下的中间文件，注意启用的顺序
+DOWNLOADER_MIDDLEWARES = {
+'scrapy_splash.SplashCookiesMiddleware': 723,
+'scrapy_splash.SplashMiddleware': 725,
+'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+#在settings.py启用SplashDeduplicateArgsMiddleware中间件
+SPIDER_MIDDLEWARES = {
+'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+#设置一个去重的类
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+#启用这个scrapy-splash的缓存系统
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
