@@ -6,10 +6,12 @@ from lxml import etree
 import pandas as pd
 from collections import OrderedDict
 from sqlalchemy import create_engine
-engine=create_engine('mysql+pymysql://{}:{}@localhost:3306/db_rocky?charset=utf8'.format('',''))
+
+engine=create_engine('mysql+pymysql://{}:{}@localhost:3306/db_rocky?charset=utf8'.format('root',''))
 def getHistory(start, end):
     with open('cookies', 'r') as f:
-        js = json.load(f)
+        # js = json.load(f)
+        js=eval(f.read())
     # cookie=js.get('Cookie','')
     headers = js.get('headers', '')
     # url='https://www.szlib.org.cn/MyLibrary/LoanHistory.jsp?v_StartDate=20090123&v_EndDate=20180123&v_ServiceAddr=&CardOrBarcode=cardno&cardno=0440070074317&v_LoanType=E&curpage=2'
@@ -32,7 +34,7 @@ def getHistory(start, end):
     barcode=[]
     callno=[]
 
-    for page in range(1,(int(total)+20)/20+1):
+    for page in range(1,(int(total)+20)//20+1):
         r=requests.get(url=base.format(start,end,page),headers=headers)
         tree = etree.HTML(r.text)
         for item in tree.xpath('//record'):
@@ -49,12 +51,12 @@ def getHistory(start, end):
 
 
     od=OrderedDict([('Date',date),('Time',borrow_time),('Book',title),('Optime',optype),('From Library',cirtype),('Address',addr),('Barcode',barcode),('Callno',callno)])
-    print od
+    print(od)
     df=pd.DataFrame(od)
     df.to_sql('library',engine)
 
 def main():
-    getHistory('20100101', '20180122')
+    getHistory('20100101', '20180822')
 
 
 if __name__ == '__main__':
