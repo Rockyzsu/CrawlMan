@@ -3,8 +3,8 @@ import requests
 from lxml import etree
 import pymongo
 import tushare as ts
-client = pymongo.MongoClient('localhost')
-doc = client['stock']['shareholder']
+client = pymongo.MongoClient('10.18.6.102')
+doc = client['secutiry']['shareholder']
 
 __author__ = 'Rocky'
 
