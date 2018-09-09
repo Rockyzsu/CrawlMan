@@ -3,8 +3,7 @@ from sqlalchemy.orm import sessionmaker
 import redis
 
 
-engine = create_engine('mysql+pymysql://root:123456z@localhost:3306/spider?charset=utf8')
-# engine = create_engine('mysql+pymysql://crawler:Crawler@1234@10.18.4.211:3367/spider?charset=utf8')
+engine = create_engine('mysql+pymysql://root:{}@localhost:3306/spider?charset=utf8')
 DBSession = sessionmaker(bind=engine)
 
 

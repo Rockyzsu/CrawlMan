@@ -10,3 +10,4 @@
 * yinyonbao:应用宝app排名数据抓取
 * tencentjob:腾讯职位抓取
 * stockholder:股东数据抓取
+* csdn:csdn博客排名抓取

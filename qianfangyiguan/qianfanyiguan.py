@@ -97,7 +97,7 @@ def getcatelogy(d):
         d['cateId'] = cateId
         print('second id', cateId)
         print('second name', cate['cateName'])
-        #getdata(d)
+        # getdata(d)
         # print('type')
         # print(type(cateId))
         '''
@@ -111,7 +111,8 @@ def getcatelogy(d):
 
 def getdata(d):
     url = 'http://qianfan.analysys.cn/qianfan/category/appIndexs'
-    header = {'Origin': 'http://qianfan.analysys.cn', 'Content-Length': '59',
+    header = {'Origin': 'http://qianfan.analysys.cn',
+              # 'Content-Length': '59',
               'Accept-Language': 'zh,en;q=0.8,en-US;q=0.6', 'Accept-Encoding': 'gzip, deflate',
               'X-Requested-With': 'XMLHttpRequest', 'Host': 'qianfan.analysys.cn', 'Accept': '*/*',
               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
@@ -145,7 +146,7 @@ def getdata(d):
             try:
                 developCompanyFullName = app['developCompanyFullName']
 
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 developCompanyFullName = 'Nodata'
             # 二级目录
@@ -238,7 +239,7 @@ def getdata(d):
             d['developCompanyAbbr'] = developCompanyAbbr
             storedata(d)
 
-    except  Exception, e:
+    except Exception as e:
         print(e)
         print(d['cateId'])
         # r = requests.post(url=url, data=data, headers=header)
