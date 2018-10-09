@@ -4,6 +4,6 @@
 # @File : run.py
 
 from scrapy import cmdline
-name = 'website'
+name = 'website2'
 cmd = 'scrapy crawl {}'.format(name)
 cmdline.execute(cmd.split())

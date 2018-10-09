@@ -76,7 +76,7 @@ class WebPostSpider(scrapy.Spider):
             username = rds.lpop('username')
             if not username:
                 break
-            logging.info('query card >>>> {}'.format(username))
+            logging.info('query username >>>> {}'.format(username))
             data = {'rand': '',
                     'username': username,
                     'password': first_md5,
