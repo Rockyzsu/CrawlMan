@@ -52,11 +52,11 @@ class WebPostSpider(scrapy.Spider):
                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
                'X-Requested-With': 'XMLHttpRequest'}
 
-    post_url = 'https://www.szlib.org.config/MyLibrary/readerLoginM.jsp'
+    post_url = 'https://www.szlib.org.cn/MyLibrary/readerLoginM.jsp'
 
     def start_requests(self):
         # TO DO
-        URL = 'https://www.szlib.org.cn'
+        URL = 'https://www.szlib.org.cn/'
         headers = {
             'User-Agent': 'Mozilla/5.0 (Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
         yield Request(url=URL, callback=self.query, headers=headers)
@@ -65,7 +65,6 @@ class WebPostSpider(scrapy.Spider):
         # TO DO
         rds = redis.StrictRedis('10.18.6.26', db=config.DB, decode_responses=True)
 
-        # username = 'F44010006{}'
         password = config.password
         s = bytes(password, encoding='utf8')
         m = hashlib.md5()
@@ -89,7 +88,7 @@ class WebPostSpider(scrapy.Spider):
                               )
 
     def parse(self, response):
-        # logging.info(response.text)
+        logging.info(response.text)
         # logging.info('pass')
         if '<message>OK</message>' in response.text:
             item = SpiderItem()
