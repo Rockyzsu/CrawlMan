@@ -69,7 +69,7 @@ def year2018():
     value = get_value(year)
     # 第一次循环获取所有的数据
     crawl_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    current = datetime.datetime.strptime('2015-05-29', '%Y-%m-%d')
+    current = datetime.datetime.strptime('2018-10-19', '%Y-%m-%d')
     columns = ['新增投资者数量', '新增投资者数量-自然人', '新增投资者数量-非自然人',
                '期末投资者数量', '期末投资者数量-自然人', '已开立A股账户投资者-自然人', '已开立B股账户投资者-自然人',
                '期末投资者数量-非自然人', '已开立A股账户投资者-非自然人', '已开立B股账户投资者-非自然人',
@@ -82,9 +82,9 @@ def year2018():
     for i in range(0, 365*4, 7):
         now = current + datetime.timedelta(days=-1 * i)
         now_str = now.strftime('%Y.%m.%d')
-        if now_str=='2014.05.29':
+        if now_str=='2015.05.01':
             break
-        print(now_str)
+        logger.info('当前日期 >>>> {}'.format(now_str))
         data = {
             'dateType': '',
             'dateStr': now_str,
@@ -93,7 +93,7 @@ def year2018():
         try:
             s = session.post(url=home_page, headers=headers, data=data)
         except Exception as e:
-            logger.error(e)
+            logger.error('请求出错{}'.format(e))
             continue
 
         if '没有找到相关信息' in s.text:
@@ -103,31 +103,37 @@ def year2018():
         # print(s.text)
         root = etree.HTML(s.text)
         content = root.xpath('string(.)')
-        content=re.search('投资者数(.*)',content,re.S).group(1)
+        content=re.search('新增投资者数(.*)',content,re.S).group(1)
         # print(content)
         # 共有10个数字，分 别对应网站上的
         num_list = re.findall('\s*([\d*\.*,*\-*]+)\s*\d*、*', content)
         # num_list = re.findall('>([\d+\.,]+\S?)<', s.text)
-        print(num_list)
+        logger.info('列表数据 {}'.format(num_list))
         l = len(num_list)
         if l!=10:
             logger.warning('length not equal 10')
+            logger.warning('实际长度为{}'.format(l))
             # logger.error(content)
             # print(content)
         d = {}
         d['publish_date']=now
         for idx, name in enumerate(columns):
+
+            # 避免17年2月后长度只有10的时候越界
+            if l==10 and idx==10:
+                break
             try:
-                print(name, '\t', num_list[idx])
+                logger.info('{}\t{}'.format(name, num_list[idx]))
             except Exception as e:
-                logger.error(e)
+                logger.error('index出错')
                 continue
             try:
                  item = re.sub(',','',num_list[idx])
                  if len(item.split('.')[1])>2:
                      item = item[:len(item)-1]
             except Exception as e:
-                logger.error(e)
+
+                # logger.error(e)
                 d[name]=0
 
             else:
@@ -147,7 +153,7 @@ def year2015():
     value = get_value(year)
     # 第一次循环获取所有的数据
     crawl_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    current = datetime.datetime.strptime('2009-06-12', '%Y-%m-%d')
+    current = datetime.datetime.strptime('2015-04-24', '%Y-%m-%d')
     columns = ['期末有效账户数（万户）',
                '新增股票账户数（户）合计',
                '新增A股开户数（户）',
@@ -160,9 +166,9 @@ def year2015():
                '期末休眠账户数（万户）',
                ]
     doc = db['db_stock']['investor_trend']
-    # 2017.02.10 后面的只有10项
 
-    for i in range(0, 365*2, 7):
+
+    for i in range(0, 365*10, 7):
         now = current + datetime.timedelta(days=-1 * i)
         now_str = now.strftime('%Y.%m.%d')
         if now_str=='2014.05.29':
@@ -234,4 +240,7 @@ def year2015():
         except Exception as e:
             logger.error('异常 >>>{}'.format(e))
 
-year2015()
+
+if __name__=='__main__':
+    year2015()
+    # year2018()
