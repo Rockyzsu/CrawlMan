@@ -9,6 +9,8 @@ import requests
 from lxml import etree
 import pymongo
 import time
+from send_mail import sender_21cn
+
 session = requests.Session()
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
@@ -76,74 +78,70 @@ def weekly_update():
     doc = db['db_parker']['investor_trend_2015_05_after']
     # 2017.02.10 后面的只有10项
 
-    for i in range(0, 365*4, 7):
-        now = current + datetime.timedelta(days=-1 * i)
-        now_str = now.strftime('%Y.%m.%d')
-        if now_str=='2015.05.01':
+
+    now = current + datetime.timedelta(days=-7)
+    now_str = now.strftime('%Y.%m.%d')
+
+    logger.info('当前日期 >>>> {}'.format(now_str))
+    data = {
+        'dateType': '',
+        'dateStr': now_str,
+        'channelIdStr': value,
+    }
+    try:
+        s = session.post(url=home_page, headers=headers, data=data)
+    except Exception as e:
+        logger.error('请求出错{}'.format(e))
+        sender_21cn('<开户数> 爬取异常 {}','异常信息{}'.format(crawl_time,e))
+        return
+
+    if '没有找到相关信息' in s.text:
+        logger.info('没有找到相关信息')
+        return
+
+    root = etree.HTML(s.text)
+    content = root.xpath('string(.)')
+    content=re.search('新增投资者数(.*)',content,re.S).group(1)
+    # 共有10个数字，分 别对应网站上的
+    num_list = re.findall('\s*([\d*\.*,*\-*]+)\s*\d*、*', content)
+    # num_list = re.findall('>([\d+\.,]+\S?)<', s.text)
+    logger.info('列表数据 {}'.format(num_list))
+    l = len(num_list)
+    if l!=10:
+        logger.warning('length not equal 10')
+        logger.warning('实际长度为{}'.format(l))
+
+
+    d = {}
+    d['publish_date']=now
+    for idx, name in enumerate(columns):
+
+        # 避免17年2月后长度只有10的时候越界
+        if l==10 and idx==10:
             break
-        logger.info('当前日期 >>>> {}'.format(now_str))
-        data = {
-            'dateType': '',
-            'dateStr': now_str,
-            'channelIdStr': value,
-        }
         try:
-            s = session.post(url=home_page, headers=headers, data=data)
+            logger.info('{}\t{}'.format(name, num_list[idx]))
         except Exception as e:
-            logger.error('请求出错{}'.format(e))
+            logger.error('index出错')
             continue
-
-        if '没有找到相关信息' in s.text:
-            logger.info('没有找到相关信息')
-            continue
-
-        # print(s.text)
-        root = etree.HTML(s.text)
-        content = root.xpath('string(.)')
-        content=re.search('新增投资者数(.*)',content,re.S).group(1)
-        # print(content)
-        # 共有10个数字，分 别对应网站上的
-        num_list = re.findall('\s*([\d*\.*,*\-*]+)\s*\d*、*', content)
-        # num_list = re.findall('>([\d+\.,]+\S?)<', s.text)
-        logger.info('列表数据 {}'.format(num_list))
-        l = len(num_list)
-        if l!=10:
-            logger.warning('length not equal 10')
-            logger.warning('实际长度为{}'.format(l))
-            # logger.error(content)
-            # print(content)
-        d = {}
-        d['publish_date']=now
-        for idx, name in enumerate(columns):
-
-            # 避免17年2月后长度只有10的时候越界
-            if l==10 and idx==10:
-                break
-            try:
-                logger.info('{}\t{}'.format(name, num_list[idx]))
-            except Exception as e:
-                logger.error('index出错')
-                continue
-            try:
-                 item = re.sub(',','',num_list[idx])
-                 if len(item.split('.')[1])>2:
-                     item = item[:len(item)-1]
-            except Exception as e:
-
-                # logger.error(e)
-                d[name]=0
-
-            else:
-                d[name]=item
-
-        d['crawl_time'] = crawl_time
-
-
         try:
-            doc.insert(d)
+             item = re.sub(',','',num_list[idx])
+             if len(item.split('.')[1])>2:
+                 item = item[:len(item)-1]
         except Exception as e:
-            logger.error('异常 >>>{}'.format(e))
 
+            d[name]=0
+
+        else:
+            d[name]=item
+
+    d['crawl_time'] = crawl_time
+
+    try:
+        doc.insert(d)
+    except Exception as e:
+        sender_21cn('<开户数> 入库异常 {}','异常信息{}'.format(crawl_time,e))
+        logger.error('异常 >>>{}'.format(e))
 
 if __name__=='__main__':
     weekly_update()
