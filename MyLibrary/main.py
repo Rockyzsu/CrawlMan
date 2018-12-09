@@ -1,5 +1,6 @@
 # -*-coding=utf-8-*-
 import json
+import random
 import re
 import time
 
@@ -9,19 +10,12 @@ import pandas as pd
 from collections import OrderedDict
 from sqlalchemy import create_engine
 from login import login_session
+import config
 
-engine = create_engine('mysql+pymysql://{}:{}@localhost:3306/db_rocky?charset=utf8'.format('root', '123456z'))
-session = login_session()
+engine = create_engine('mysql+pymysql://{}:{}@localhost:3306/db_rocky?charset=utf8'.format('root', config.mysql))
 
 
-def getHistory(start, end):
-    global session
-    # with open('cookies', 'r') as f:
-    #     # js = json.load(f)
-    #     js=eval(f.read())
-    # # cookie=js.get('Cookie','')
-    # headers = js.get('headers', '')
-    # url='https://www.szlib.org.cn/MyLibrary/LoanHistory.jsp?v_StartDate=20090123&v_EndDate=20180123&v_ServiceAddr=&CardOrBarcode=cardno&cardno=0440070074317&v_LoanType=E&curpage=2'
+def getHistory(session, start, end, cardno):
     headers = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip,deflate,br', 'Accept-Language': 'zh,en;q=0.9,en-US;q=0.8',
@@ -31,9 +25,9 @@ def getHistory(start, end):
         'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/67.0.3396.99Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest'
     }
-    time.sleep(5)
-    base = "https://www.szlib.org.cn/MyLibrary/LoanHistory.jsp?v_StartDate={}&v_EndDate={}&v_ServiceAddr=&CardOrBarcode=cardno&cardno=0440070074317&v_LoanType=Ea&curpage={}"
-    url = base.format(start, end, 1)
+    # time.sleep(5)
+    base = "https://www.szlib.org.cn/MyLibrary/LoanHistory.jsp?v_StartDate={}&v_EndDate={}&v_ServiceAddr=&CardOrBarcode=cardno&cardno={}&v_LoanType=Ea&curpage={}"
+    url = base.format(start, end, cardno, 1)
     r = session.get(url=url, headers=headers)
 
     # df = {'date': date, 'time': borrow_time, 'Book': title, 'optime': optype, 'From Library': cirtype, 'Address': addr,
@@ -51,8 +45,8 @@ def getHistory(start, end):
     callno = []
 
     for page in range(1, (int(total) + 20) // 20 + 1):
-        time.sleep(5)
-        r = session.get(url=base.format(start, end, page), headers=headers)
+        time.sleep(5 + random.random() * 5)
+        r = session.get(url=base.format(start, end, cardno, page), headers=headers)
         tree = etree.HTML(r.text)
         for item in tree.xpath('//record'):
             if item.xpath('.//title/text()'):
@@ -69,14 +63,31 @@ def getHistory(start, end):
     od = OrderedDict(
         [('Date', date), ('Time', borrow_time), ('Book', title), ('Optime', optype), ('From Library', cirtype),
          ('Address', addr), ('Barcode', barcode), ('Callno', callno)])
-    print(od)
     df = pd.DataFrame(od)
-    print(df)
-    df.to_sql('tb_library', engine)
+    return df
 
 
 def main():
-    getHistory('20100101', '20181030')
+    start = '20181130'
+    end = ''
+    s1 = login_session(config.username, config.password)
+    df1 = getHistory(s1, start, end, config.cardno1)
+
+    s2 = login_session(config.username2, config.password2)
+    df2 = getHistory(s2, start, end, config.cardno2)
+    df = pd.concat([df1, df2])
+    # df['t']=' '
+    df['Datetime'] = df['Date'] + ' ' + df['Time']
+    df['Datetime'] = pd.to_datetime(df['Datetime'], format='%Y-%m-%d %H:%M:%S')
+    # df=df.sort_values(by='Date')
+    # df=df.reset_index(drop=True)
+    df = df.set_index('Datetime', drop=True)
+    del df['Date']
+    del df['Time']
+    # del df['t']
+    print(df)
+    df = df.sort_index(ascending=False)
+    df.to_sql('tb_library', engine, if_exists='append')
 
 
 if __name__ == '__main__':
