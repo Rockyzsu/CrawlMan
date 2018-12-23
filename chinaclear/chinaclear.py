@@ -4,16 +4,19 @@
 import datetime
 import logging
 import os
+import pandas as pd
 import re
 import requests
 from lxml import etree
 import pymongo
 import time
-from send_mail import sender_21cn
+from send_mail import sender_139
+import config
+from sqlalchemy import create_engine
 
 session = requests.Session()
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Windows; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
 
 home_page = 'http://www.chinaclear.cn/cms-search/view.action?action=china'
 
@@ -59,11 +62,16 @@ def get_value(year):
         logger.error(e)
         return None
     root = etree.HTML(s.text)
-    value = root.xpath('//select[@name="channelIdStr"]/option[{}]/@value'.format(option))[0]
+    try:
+        value = root.xpath('//select[@name="channelIdStr"]/option[{}]/@value'.format(option))[0]
+    except Exception as e:
+        value = None
+
     return value
 
 
 def weekly_update():
+    engine = create_engine('mysql+pymysql://{}:{}@localhost:3306/db_stock?charset=utf8'.format('root', config.mysql_password_local))
     year='2018'
     value = get_value(year)
     # 第一次循环获取所有的数据
@@ -92,7 +100,7 @@ def weekly_update():
         s = session.post(url=home_page, headers=headers, data=data)
     except Exception as e:
         logger.error('请求出错{}'.format(e))
-        sender_21cn('<开户数> 爬取异常 {}','异常信息{}'.format(crawl_time,e))
+        sender_139('<开户数> 爬取异常 {}','异常信息{}'.format(crawl_time,e))
         return
 
     if '没有找到相关信息' in s.text:
@@ -113,7 +121,7 @@ def weekly_update():
 
 
     d = {}
-    d['publish_date']=now
+    d['publish_date']=now_str
     for idx, name in enumerate(columns):
 
         # 避免17年2月后长度只有10的时候越界
@@ -136,11 +144,26 @@ def weekly_update():
             d[name]=item
 
     d['crawl_time'] = crawl_time
-
+    content = []
+    for k, v in d.items():
+        content.append('{}:{}'.format(k, v))
     try:
-        doc.insert(d)
+        sender_139('{} 新增投资者信息'.format(crawl_time), '\n'.format(content))
     except Exception as e:
-        sender_21cn('<开户数> 入库异常 {}','异常信息{}'.format(crawl_time,e))
+        logger.error('发送邮件出错')
+
+    # 写入mongo
+    doc.insert(d)
+    del d['_id']
+    # df = pd.DataFrame.from_dict(d,orient='index').T
+    df = pd.DataFrame(d,index=['publish_date'])
+    # df['publish_date']
+    try:
+        df.to_sql('tb_chinaclear',con=engine,if_exists='append',index=None)
+
+
+    except Exception as e:
+        sender_139('<开户数> 入库异常','异常信息{} -{}'.format(e,crawl_time))
         logger.error('异常 >>>{}'.format(e))
 
 if __name__=='__main__':
