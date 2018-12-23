@@ -50,6 +50,9 @@ def llogger(filename):
 
 
 logger = llogger(__file__)
+engine = create_engine(
+    'mysql+pymysql://{}:{}@localhost:3306/db_stock?charset=utf8'.format('root', config.mysql_password_local))
+year = '2018'
 
 
 def get_value(year):
@@ -69,11 +72,10 @@ def get_value(year):
 
     return value
 
+value = get_value(year)
 
 def weekly_update():
-    engine = create_engine('mysql+pymysql://{}:{}@localhost:3306/db_stock?charset=utf8'.format('root', config.mysql_password_local))
-    year='2018'
-    value = get_value(year)
+
     # 第一次循环获取所有的数据
     crawl_time = datetime.datetime.now().strftime('%Y-%m-%d')
     current = datetime.datetime.strptime('{}'.format(crawl_time), '%Y-%m-%d')
@@ -86,9 +88,11 @@ def weekly_update():
     doc = db['db_parker']['investor_trend_2015_05_after']
     # 2017.02.10 后面的只有10项
 
-
-    now = current + datetime.timedelta(days=-7)
+    t= -7
+    now = current + datetime.timedelta(days=t)
     now_str = now.strftime('%Y.%m.%d')
+    if now_str == '2015.05.01':
+        exit()
 
     logger.info('当前日期 >>>> {}'.format(now_str))
     data = {
@@ -147,16 +151,17 @@ def weekly_update():
     content = []
     for k, v in d.items():
         content.append('{}:{}'.format(k, v))
-    try:
-        sender_139('{} 新增投资者信息'.format(crawl_time), '\n'.format(content))
-    except Exception as e:
-        logger.error('发送邮件出错')
+    # try:
+    #     sender_139('{} 新增投资者信息'.format(crawl_time), '\n'.format(content))
+    # except Exception as e:
+    #     logger.error('发送邮件出错')
 
     # 写入mongo
     doc.insert(d)
     del d['_id']
+    d_list = [d]
     # df = pd.DataFrame.from_dict(d,orient='index').T
-    df = pd.DataFrame(d,index=['publish_date'])
+    df = pd.DataFrame(d)
     # df['publish_date']
     try:
         df.to_sql('tb_chinaclear',con=engine,if_exists='append',index=None)
@@ -167,4 +172,5 @@ def weekly_update():
         logger.error('异常 >>>{}'.format(e))
 
 if __name__=='__main__':
+    # for i in range(1,52*5):
     weekly_update()
