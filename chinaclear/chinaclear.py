@@ -88,7 +88,7 @@ def weekly_update():
     doc = db['db_parker']['investor_trend_2015_05_after']
     # 2017.02.10 后面的只有10项
 
-    t= -7
+    t= -4
     now = current + datetime.timedelta(days=t)
     now_str = now.strftime('%Y.%m.%d')
     if now_str == '2015.05.01':
@@ -165,7 +165,6 @@ def weekly_update():
     # df['publish_date']
     try:
         df.to_sql('tb_chinaclear',con=engine,if_exists='append',index=None)
-
 
     except Exception as e:
         sender_139('<开户数> 入库异常','异常信息{} -{}'.format(e,crawl_time))

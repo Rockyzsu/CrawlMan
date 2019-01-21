@@ -33,7 +33,7 @@ def getHistory(session, start, end, cardno):
     # df = {'date': date, 'time': borrow_time, 'Book': title, 'optime': optype, 'From Library': cirtype, 'Address': addr,
     #       'Barcode': barcode, 'callno': callno}
     # col_name={'date':}
-
+    print('text>>> {}'.format(r.text))
     total = re.findall(r'<totalno>(\d+)</totalno>', r.text)[0]
     date = []
     borrow_time = []
