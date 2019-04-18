@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from sandbox import config
 
 Base = declarative_base()
-engine = create_engine('mysql+pymysql://{}:{}@{}:3306/spider?charset=utf8'.format(config.username,config.password,config.mysql_ip))
+engine = create_engine('mysql+pymysql://{}:{}@{}:3306/db_rocky?charset=utf8'.format(config.username,config.password,config.mysql_ip))
 DBSession = sessionmaker(bind=engine)
 
 TABLE_NAME = 'tb_myubbs'

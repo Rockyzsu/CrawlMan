@@ -8,7 +8,7 @@ from sandbox.models import SpiderModels, DBSession
 import logging
 import pymongo
 from sandbox import config
-from sandbox import setting
+from sandbox import settings
 
 class SQLPipeline(object):
     def __init__(self):
@@ -30,6 +30,7 @@ class SQLPipeline(object):
             self.session.commit()
 
         except Exception as e:
+            self.session.rollback()
             logging.error('>>>> 插入数据库失败{}'.format(e))
         return item
 
