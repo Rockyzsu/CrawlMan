@@ -70,9 +70,12 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'bbssmth.pipelines.BbssmthPipeline': 300,
-# }
+ITEM_PIPELINES = {
+   'bbssmth.pipelines.BbssmthPipeline': 300,
+# 'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline':200,
+}
+
+ES_HOST='10.18.6.102'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -86,7 +89,7 @@ DEFAULT_REQUEST_HEADERS = {
 # AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 # AUTOTHROTTLE_DEBUG = False
-
+LOG_LEVEL='INFO'
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 # HTTPCACHE_ENABLED = True
@@ -94,3 +97,7 @@ DEFAULT_REQUEST_HEADERS = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# ELASTICSEARCH_SERVERS = ['10.18.6.26:9200']
+# ELASTICSEARCH_INDEX='jsl_elastic'
+# ELASTICSEARCH_TYPE='ticket'

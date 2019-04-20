@@ -1,0 +1,986 @@
+<script type="text/javascript">if (!document.getElementById('body')) {
+    var redir = window.location.href.replace('/nForum/', '/nForum/#!');
+    window.location.href = redir;
+}</script>
+<style type="text/css">.t-pre, .t-pre-bottom {
+    margin-top: 3px;
+    width: 100%
+}
+
+.t-pre-bottom .t-btn {
+    margin-left: 5px
+}
+
+.t-btn a {
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    margin-left: 2px;
+    margin-right: 4px;
+    padding: 2px 6px;
+    padding: 3px 6px 1px \9;
+    height: 16px;
+    vertical-align: middle
+}
+
+.t-btn a:hover {
+    color: #FFF
+}
+
+.t-btn .input {
+    color: #999;
+    font-size: 12px;
+    margin-right: 5px
+}
+
+.t-btn .rss {
+    padding: 0;
+    vertical-align: middle
+}
+
+.t-btn .rss samp {
+    width: 27px;
+    height: 15px
+}
+
+.t-btn label {
+    margin-right: 5px;
+    margin-left: 2px;
+    vertical-align: middle
+}
+
+.page {
+    float: right;
+    padding-top: 2px;
+    *padding-top: 0
+}
+
+.b-head div a {
+    color: #f0d97f;
+    padding-right: 5px
+}
+
+.b-head div a:hover {
+    color: #efdb8d
+}
+
+.b-content .middle {
+    text-align: center
+}
+
+.t_fewuser {
+    color: #FF0
+}
+
+.title_1 {
+    width: 140px;
+    padding-left: 10px
+}
+
+.title_2 {
+    width: 100px
+}
+
+.title_3 {
+    width: auto
+}
+
+.title_4 {
+    width: 45px
+}
+
+.title_5 {
+    width: 45px
+}
+
+.title_6 {
+    width: 45px
+}
+
+.title_7 {
+    width: 45px
+}
+
+.board-list thead th.title_8 {
+    padding-left: 7px
+}
+
+.title_8 {
+    width: 37px;
+    padding-left: 10px
+}
+
+.title_9 {
+    width: auto
+}
+
+.title_10 {
+    width: 64px
+}
+
+.title_11 {
+    width: 35px
+}
+
+.title_12 {
+    width: 97px
+}
+
+.title_13 {
+    width: 35px;
+    padding-left: 5px
+}
+
+.title_14 {
+    width: 35px
+}
+
+.title_15 {
+    width: auto
+}
+
+.title_16 {
+    width: 125px
+}
+
+.title_17 {
+    width: 80px
+}
+
+.middle {
+    text-align: center
+}
+
+.board-list .top .title_9 a {
+    color: red
+}
+
+.board-list .tag {
+    width: 16px;
+    height: 17px
+}
+
+.board-list .tag-att {
+    width: 7px;
+    height: 16px;
+    margin-left: 4px
+}
+
+.board-list .threads-tab {
+    font-weight: bold;
+    padding-left: 4px
+}
+
+.board-list .threads-tab a {
+    margin: 0 3px
+}
+
+#deny_list th.c_op {
+    padding-left: 5px
+}
+
+#deny_list .c_num {
+    width: 37px;
+    padding-left: 7px
+}
+
+#deny_list .c_userid {
+    width: 120px
+}
+
+#deny_list .c_userid input {
+    width: 90px
+}
+
+#deny_list .c_reason input {
+    width: 150px;
+    margin-right: 10px
+}
+
+#deny_list select {
+    background-color: #ffffff
+}
+
+#deny_list .c_desc {
+    width: 160px
+}
+
+#deny_list .c_desc input {
+    width: 30px
+}
+
+#deny_list .c_op {
+    width: 85px
+}
+
+#deny_list .c_op input {
+    margin-left: 5px
+}
+
+#m_deny li span {
+    padding-right: 4px;
+    vertical-align: middle
+}
+
+#m_deny .input-text {
+    width: 150px;
+    margin-right: 4px
+}
+
+#board_banner {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0
+}
+
+#board_banner div.swf_wrapper {
+    z-index: -1;
+    display: inline-block
+}
+
+#board_banner div.swf_overlay {
+    z-index: 0;
+    cursor: pointer;
+    background-color: #ffffff;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+    display: inline-block
+}
+
+.apptable {
+    width: 100%
+}
+
+.apptable td {
+    border-bottom: 1px solid #c9d7f1;
+    vertical-align: center;
+    height: 26px;
+    text-align: center
+}
+
+.apptable pre {
+    margin: 0 auto;
+    overflow: scroll;
+    height: 500px;
+    width: 550px;
+    text-align: left
+}
+
+.apptable td.sugg {
+    font-size: 14px;
+    font-weight: bold
+}
+
+#bm_apply td {
+    text-align: center
+}</style>
+<div class="t-pre">
+    <div class="page">
+        <ul class="pagination">
+            <li class="page-pre">主题数:<i>23125</i>&emsp;分页:</li>
+            <li>
+                <ol title="分页列表" class="page-main">
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=1" title="上一页"><<</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=1" title="转到第1页">1</a></li>
+                    <li class="page-select"><a title="当前页">2</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=3" title="转到第3页">3</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=4" title="转到第4页">4</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=5" title="转到第5页">5</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=6" title="转到第6页">6</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=7" title="转到第7页">7</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=8" title="转到第8页">8</a></li>
+                    <li class="page-omit">...</li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=771" title="转到第771页">771</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=3" title="下一页">>></a></li>
+                </ol>
+            </li>
+            <li class="page-suf"></li>
+        </ul>
+    </div>
+    <div class="t-btn"><a href="/nForum/article/Bond/post" class="b-post button">发表文章</a><a
+            href="/nForum/article/Bond/tmpl" class="b-post button">模版发文</a><a href="/nForum/board/Bond/member"
+                                                                              class="button">驻版用户</a><a
+            href="/nForum/elite/path?v=%2Fgroups%2Fsocial.faq%2FBond" class="button">精华区</a><a
+            href="/nForum/board/Bond/notes" class="button">备忘录</a>
+        <!--<a href="https://exp.newsmth.net/nforum/board/Bond" target="_blank" class="button">体验模式</a>--><a
+                href="/nForum/rss/board-Bond" class="rss" target="_blank"><samp class="ico-pos-rss"></samp></a></div>
+</div>
+<div class="b-head corner"><span class="n-right">版主:&ensp;<a href="/nForum/user/query/teaair">teaair</a>&ensp;<a
+        href="/nForum/user/query/xuemw">xuemw</a>&ensp;<a href="/nForum/user/query/damoxx">damoxx</a></span><span
+        class="n-left">本版当前共有3人在线<span
+        title="发生于2018-07-19 14:39:59">[最高1374人]</span>&emsp;今日帖数12&emsp;版面积分:104682</span></div>
+<div class="b-content">
+    <div id="pp_board"></div>
+    <table class="board-list tiz" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="title_8">状态</th>
+            <th class="title_9 middle">主题</th>
+            <th class="title_10">发帖时间</th>
+            <th class="title_12">|&ensp;作者</th>
+            <th class="title_11 middle">评分</th>
+            <th class="title_11 middle">Like</th>
+            <th class="title_11 middle">回复</th>
+            <th class="title_10">最新回复</th>
+            <th class="title_12">|&ensp;作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/371051" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/371051">最高法院：怎么区分“套路贷”与民间借贷</a></td>
+            <td class="title_10">2019-04-18</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cumtrenlx" class="c63f">cumtrenlx</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Bond/371051?p=1#a1" title="跳转至最后回复">2019-04-18</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cumtrenlx" class="c09f">cumtrenlx</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/371043" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/371043">提前下车 今天收到ga短信 要去登记吗</a></td>
+            <td class="title_10">2019-04-18</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/ktry" class="c63f">ktry</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">7</td>
+            <td class="title_10"><a href="/nForum/article/Bond/371043?p=1#a7" title="跳转至最后回复">2019-04-18</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/macrocisco" class="c09f">macrocisco</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370854" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-light"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370854">个人投资p2p不得超过50万</a><span class="threads-tab">[<a
+                    href="/nForum/article/Bond/370854?p=2">2</a><a href="/nForum/article/Bond/370854?p=3">3</a>]</span>
+            </td>
+            <td class="title_10">2019-04-13</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LangBoWang" class="c63f">LangBoWang</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">20</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370854?p=3#a20" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/HappyNothing" class="c09f">HappyNothing</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/371024" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/371024">信而富是不是雷了</a></td>
+            <td class="title_10">2019-04-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/qiaodog" class="c63f">qiaodog</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">3</td>
+            <td class="title_10"><a href="/nForum/article/Bond/371024?p=1#a3" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/hmj09" class="c09f">hmj09</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/371020" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/371020">宜人财富刚打电话</a></td>
+            <td class="title_10">2019-04-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/SwimingPig" class="c63f">SwimingPig</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">2</td>
+            <td class="title_10"><a href="/nForum/article/Bond/371020?p=1#a2" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/SwimingPig" class="c09f">SwimingPig</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370985" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370985">橘子的VIP是不是可以提前结束项目提现啊</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LangBoWang" class="c63f">LangBoWang</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">4</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370985?p=1#a4" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Adalibra" class="c09f">Adalibra</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370999" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370999">谈谈处理非法集资群体性事件的经验</a></td>
+            <td class="title_10">2019-04-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/xxspt" class="c63f">xxspt</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">9</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370999?p=1#a9" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LangBoWang" class="c09f">LangBoWang</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370995" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370995">团贷有啥消息？</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/dexterhl" class="c63f">dexterhl</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">4</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370995?p=1#a4" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cfr" class="c09f">cfr</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370966" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370966">今天续投了40万桔子</a><span class="threads-tab">[<a
+                    href="/nForum/article/Bond/370966?p=2">2</a>]</span></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/ChengChui" class="c63f">ChengChui</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">16</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370966?p=2#a16" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/jeffen" class="c09f">jeffen</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370974" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370974">爱钱进还比较有良心，和信贷就是彻底耍流氓</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cupcup" class="c63f">cupcup</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">6</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370974?p=1#a6" title="跳转至最后回复">2019-04-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/wfx" class="c09f">wfx</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370980" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370980">kakazane被取消在Bond版的发文权限</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/deliver" class="c63f">deliver</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370980?p=1#a0" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/deliver" class="c09f">deliver</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370962" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370962">WQ路上</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cumtrenlx" class="c63f">cumtrenlx</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">6</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370962?p=1#a6" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/yqze" class="c09f">yqze</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370960" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370960">没人讨论红岭</a></td>
+            <td class="title_10">2019-04-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/afishdeads" class="c63f">afishdeads</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370960?p=1#a0" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/afishdeads" class="c09f">afishdeads</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/369425" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/369425">人人贷今天到期，已经到账</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2019-04-01</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/wztwangzi" class="c63f">wztwangzi</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">7</td>
+            <td class="title_10"><a href="/nForum/article/Bond/369425?p=1#a7" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/wztwangzi" class="c09f">wztwangzi</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370942" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370942">退出人人贷方法</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/guopeng0304" class="c63f">guopeng0304</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">5</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370942?p=1#a5" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/guopeng0304" class="c09f">guopeng0304</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370946" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370946">现在买亿联银行的五年定期咋样</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/ABstyle" class="c63f">ABstyle</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">4</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370946?p=1#a4" title="跳转至最后回复">2019-04-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/yyll" class="c09f">yyll</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370953" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370953">陆金所的合格投资者证明是啥？</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/JiangNan" class="c63f">JiangNan</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370953?p=1#a0" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/JiangNan" class="c09f">JiangNan</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370950" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370950">高搜易宣布良性退出p2p业务</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/farmerwhat" class="c63f">farmerwhat</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370950?p=1#a0" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/farmerwhat" class="c09f">farmerwhat</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370940" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370940">细思恐鸡：TDW之后再无P2P</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/shishaodu" class="c63f">shishaodu</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370940?p=1#a1" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/spkid" class="c09f">spkid</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370941" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370941">货币基金理财利息真是低</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/lhg1983" class="c63f">lhg1983</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370941?p=1#a1" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/lixianghui" class="c09f">lixianghui</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370918" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370918">当时就是被支付宝的低利率逼到了P2P</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/zhiqiancsu" class="c63f">zhiqiancsu</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">4</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370918?p=1#a4" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sysucondor" class="c09f">sysucondor</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370920" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370920">积木盒子能继续投吗</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/ntttonline" class="c63f">ntttonline</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370920?p=1#a1" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/smartjack" class="c09f">smartjack</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370924" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370924">桔子也不用抢了</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LangBoWang" class="c63f">LangBoWang</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">3</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370924?p=1#a3" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cat" class="c09f">cat</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370912" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370912">派生科级 暴涨</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/CX5206" class="c63f">CX5206</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">2</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370912?p=1#a2" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/wellfish" class="c09f">wellfish</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370791" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370791">积木盒子怎么样</a></td>
+            <td class="title_10">2019-04-12</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Ariference" class="c63f">Ariference</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">9</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370791?p=1#a9" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/zq010" class="c09f">zq010</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370719" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370719">金融二字少沾边</a></td>
+            <td class="title_10">2019-04-11</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cumtrenlx" class="c63f">cumtrenlx</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">3</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370719?p=1#a3" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/bjlawyer" class="c09f">bjlawyer</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370906" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370906">[讨论]桔子大家看好吗？</a></td>
+            <td class="title_10">2019-04-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/llzhao" class="c63f">llzhao</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">4</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370906?p=1#a4" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/rallumer" class="c09f">rallumer</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370843" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370843">宜人贷买货币基金送宜人币</a></td>
+            <td class="title_10">2019-04-13</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/grinsong" class="c63f">grinsong</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">9</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370843?p=1#a9" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/qdxh" class="c09f">qdxh</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370425" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-light"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370425">理财产品也不安全？</a><samp
+                    class="tag-att ico-pos-article-attach"></samp><span class="threads-tab">[<a
+                    href="/nForum/article/Bond/370425?p=2">2</a>]</span></td>
+            <td class="title_10">2019-04-08</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cwxhw" class="c63f">cwxhw</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">14</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370425?p=2#a14" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/cwxhw" class="c09f">cwxhw</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Bond/370208" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-lock"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Bond/370208">目前能投的台子清单</a><samp
+                    class="tag-att ico-pos-article-attach"></samp><span class="threads-tab">[<a
+                    href="/nForum/article/Bond/370208?p=2">2</a><a href="/nForum/article/Bond/370208?p=3">3</a><a
+                    href="/nForum/article/Bond/370208?p=4">4</a>]</span></td>
+            <td class="title_10">2019-04-04</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/longyiyun" class="c63f">longyiyun</a></td>
+            <td class="title_11 middle"><span style="color:black;">0</span></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_11 middle">33</td>
+            <td class="title_10"><a href="/nForum/article/Bond/370208?p=4#a33" title="跳转至最后回复">2019-04-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/longyiyun" class="c09f">longyiyun</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="t-pre-bottom">
+    <div class="page">
+        <ul class="pagination">
+            <li class="page-pre">主题数:<i>23125</i>&emsp;分页:</li>
+            <li>
+                <ol title="分页列表" class="page-main">
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=1" title="上一页"><<</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=1" title="转到第1页">1</a></li>
+                    <li class="page-select"><a title="当前页">2</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=3" title="转到第3页">3</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=4" title="转到第4页">4</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=5" title="转到第5页">5</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=6" title="转到第6页">6</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=7" title="转到第7页">7</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=8" title="转到第8页">8</a></li>
+                    <li class="page-omit">...</li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=771" title="转到第771页">771</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Bond?p=3" title="下一页">>></a></li>
+                </ol>
+            </li>
+            <li class="page-suf"></li>
+        </ul>
+    </div>
+    <div class="t-btn">
+        <form method="get" action="/nForum/s/article" id="board_search"><input type="text" class="input-text input"
+                                                                               name="t1" placeholder="输入关键字" size="16"/><input
+                type="text" class="input-text input" name="au" placeholder="输入作者ID" size="12"/><input type="checkbox"
+                                                                                                      name="m"
+                                                                                                      id="c_m"/><label
+                for="c_m">精华帖</label><input type="checkbox" name="a" id="c_a"/><label for="c_a">带附件</label><input
+                type="submit" class="button" value="搜索"/>&emsp;&emsp;<input type="button" class="button" value="超级搜索"
+                                                                            onclick="window.open('http://ar.newsmth.net/search.jsp?boardname=Bond')"/><input
+                type="hidden" name="b" value="Bond"/>
+            <!--&emsp;&emsp;<a href="https://exp.newsmth.net/nforum/board/Bond" target="_blank" class="button">体验模式</a>-->
+        </form>
+    </div>
+</div>
+<div id="board_banner"></div>
+<script type="text/javascript">var bName = 'Bond';
+;$('#notice_nav').html('<a href="/nForum/mainpage">水木社区</a>&ensp;>>&ensp;<a href="/nForum/section/5">社会信息</a>&ensp;>>&ensp;<a href="/nForum/section/Wealth">投资理财</a>&ensp;>>&ensp;<a href="/nForum/board/Bond">债券和互联网理财</a>&ensp;>>&ensp;<a href="javascript:void(0)">文章列表</a>');
+$.setTitle('水木社区-债券和互联网理财');
+;</script>
+<script type="text/javascript">$(function () {
+    if (typeof have_topads !== 'undefined' && typeof bName !== 'undefined') {
+        $.getJSON(SYS.base + '/board/' + bName + '/ajax_topads.json', function (data) {
+            var html = '';
+            for (k in data) {
+                var link;
+                if (data[k].url == "") link = 'javascript:void(0);'; else link = data[k].url + '" target="_blank';
+                var pos = 'top_' + bName + '_' + k;
+                html += '<tr class="top ad"><td class="title_8"><a _pos="' + pos + '" href="' + link + '"><samp class="tag ico-pos-article-top"></samp></a></td><td class="title_9"><a _pos="' + pos + '" href="' + link + '">' + data[k].title + '</a></td><td class="title_10">' + data[k].date + '</td><td class="title_12">|&ensp;系统广告</td><td class="title_11"></td><td class="title_11"></td><td class="title_11 middle">0</td><td class="title_12"><a _pos="' + pos + '" href="' + link + '">' + data[k].date + '</a></td><td class="title_12">|&ensp;系统广告</td></tr>'
+            }
+            $('.tiz').prepend(html);
+            $('.tiz tr.ad a').click(function () {
+                $(this).pingback()
+            });
+            $('.board-list tbody tr:odd td').addClass('bg-odd')
+        })
+    } else {
+        $('.board-list tbody tr:odd td').addClass('bg-odd')
+    }
+    $('#board_search').submit(function () {
+        BODY.open($(this).attr('action') + '?' + _.map($(this).getPostData(), function (v, k) {
+            v = encodeURIComponent(encodeURIComponent(v));
+            return k + '=' + v
+        }).join('&'));
+        return false
+    });
+    $('#board_search input[placeholder]').placeholder();
+    var validPost = function () {
+        if (!SESSION.get('is_login')) {
+            $('#u_login_id').alertDialog(SYS.code.MSG_LOGIN);
+            return false
+        }
+    };
+    $('#board_search input[placeholder]').placeholder();
+    $('#body').on('click', '.b-post', validPost).on('click', '#b_fav', function () {
+        var self = this;
+        DIALOG.confirmDialog('确认收藏此版面?', function () {
+            var url = SYS.base + "/fav/op/0.json", data = {ac: 'ab', v: $(self).attr('_b')};
+            $.post(url, data, function (json) {
+                if (json.ajax_st == 1) APP.renderTree();
+                DIALOG.ajaxDialog(json)
+            }, "json")
+        })
+    });
+    $('#body').on('click', '#apply_switch', function () {
+        $('.apptable').hide();
+        $('#bm_apply').show()
+    });
+    $('#body').on('submit', '#bm_apply', function () {
+        var empty = false;
+        $(this).find('textarea').each(function () {
+            if ($(this).val() == '') {
+                empty = true
+            }
+        });
+        if (empty) {
+            alert('必须回答所有问题!');
+            return false
+        }
+        var btn = $(this).find('input[type="submit"]').loading(true);
+        $.post($(this).attr('action'), $(this).getPostData(), function (json) {
+            btn.loading(false);
+            DIALOG.ajaxDialog(json)
+        }, 'json');
+        return false
+    });
+    if (typeof bName !== 'undefined') {
+        $.getJSON(SYS.base + '/board/' + bName + '/ajax_boardbanner.json', function (data) {
+            if (data) {
+                var pos = 'boardbanner_' + bName;
+                var html = '';
+                if (/\.swf/.test(data.file)) {
+                    html += '<div class="swf_wrapper" _pos="' + pos + '" _file="' + SYS.static + SYS.base + data.file + '" _width="' + data.width + '" _height="' + data.height + '"></div>';
+                    if (data.url.length > 0) {
+                        html += '<div class="swf_overlay" _url="' + data.url + '" style="width:' + data.width + 'px;height:' + data.height + 'px;margin-top:-' + data.height + 'px"></div>'
+                    }
+                } else {
+                    if (data.url == '') {
+                        html += '<a href="javascript:void(0);" _pos="' + pos + '"><img src="' + SYS.static + SYS.base + data.file + '" /></a>'
+                    } else {
+                        html += '<a href="' + data.url + '" target="_blank" _pos="' + pos + '"><img src="' + SYS.static + SYS.base + data.file + '" /></a>'
+                    }
+                }
+                $('#board_banner').html(html);
+                $('#board_banner a').click(function () {
+                    $(this).pingback()
+                });
+                $('#board_banner div.swf_wrapper').each(function () {
+                    var width = $(this).attr('_width');
+                    var height = $(this).attr('_height');
+                    var file = $(this).attr('_file');
+                    $(this).width(width).height(height);
+                    $(this).flash({swf: file, height: height, width: width, wmode: 'transparent'});
+                    $(this).mouseup(function () {
+                        $(this).pingback()
+                    })
+                });
+                $('#body').on('click', '#board_banner div.swf_overlay', function () {
+                    $(this).prev().mouseup();
+                    window.open($(this).attr('_url'))
+                })
+            }
+        })
+    }
+    if ($('#deny_list').length > 0) {
+        var b = $('#add_deny').attr('_b'), reason = SYS.cache(b + '_denyreasons');
+        if (reason) {
+            $('#deny_list select').append(_.reduce(reason, function (ret, item) {
+                ret += ('<option value="' + item.desc + '">' + item.desc + '</option>');
+                return ret
+            }, ''))
+        } else {
+            $.get(SYS.base + '/board/' + b + '/ajax_denyreasons.json', function (res) {
+                $('#deny_list select').append(_.reduce(res, function (ret, item) {
+                    ret += ('<option value="' + item.desc + '">' + item.desc + '</option>');
+                    return ret
+                }, ''));
+                SYS.cache(b + '_denyreasons', res)
+            })
+        }
+        $('#deny_list select').on('change', function () {
+            $(this).prev().val($(this).val()).change()
+        });
+        $('#add_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var data = {
+                id: tr.find('.c_userid input').val(),
+                reason: tr.find('.c_reason input').val(),
+                day: tr.find('.c_desc input').val()
+            };
+            if (data.id == '' || data.reason == '' || data.day == '') {
+                DIALOG.alertDialog('请输入封禁信息!');
+                return false
+            }
+            DIALOG.confirmDialog('确认封禁 ' + data.id + ' ' + data.day + ' 天?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_adddeny.json', data, function (res) {
+                    DIALOG.ajaxDialog(res)
+                }, 'json')
+            });
+            return false
+        });
+        $('.mod_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var t = new Date();
+            var now = parseInt(t.getTime() / 1000);
+            var offset = t.getTimezoneOffset() * 60;
+            var free = tr.find('.c_desc span').text();
+            t.setTime(free * 1000);
+            var data = {
+                action: SYS.base + '/board/' + b + '/ajax_moddeny.json',
+                id: tr.find('.c_userid').text(),
+                reason: $.trim(tr.find('.c_reason').text()),
+                freetime: t.getFullYear() + '年' + (t.getMonth() + 1) + '月' + t.getDate() + '日',
+                day: Math.floor((free - offset) / 86400) - Math.floor((now - offset) / 86400),
+                maxday: SESSION.get('is_admin') ? 70 : 14
+            };
+            var d = DIALOG.formDialog(_.template($('#tmpl_denymod').html())(data), {
+                width: 450,
+                buttons: [{
+                    text: SYS.code.COM_SUBMIT, click: function () {
+                        var f = $(this).find('#m_deny');
+                        $.post(f.attr('action'), f.getPostData(), function (repo) {
+                            DIALOG.ajaxDialog(repo)
+                        });
+                        $(this).dialog('close')
+                    }
+                }, {
+                    text: SYS.code.COM_CANCAL, click: function () {
+                        $(this).dialog('close')
+                    }
+                }]
+            }).on('change', 'select', function () {
+                $(this).prev().val($(this).val()).change()
+            });
+            d.find('select').html($('#deny_list select').html());
+            return false
+        });
+        $('.del_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var id = tr.find('.c_userid').text();
+            DIALOG.confirmDialog('确认解封 ' + id + ' 吗?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_deldeny.json', {id: id}, function (res) {
+                    DIALOG.ajaxDialog(res)
+                }, 'json')
+            });
+            return false
+        });
+        $('#deny_list input[type="button"]').prop('disabled', false)
+    }
+    if ($('#member_list').attr('_b') != undefined) {
+        var b = $('#member_list').attr('_b');
+        $('.quit_member').click(function () {
+            DIALOG.confirmDialog('您确实要取消在【' + b + '】版的驻版吗?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_quit_member.json', {}, function (res) {
+                    DIALOG.ajaxDialog(res)
+                })
+            })
+        });
+        $('.join_member').click(function () {
+            $.get(SYS.base + '/board/' + b + '/ajax_member_request.json', {}, function (res) {
+                var tablehtml = '<table class="board-list"><thead><tr><th>驻版要求</th><th>最低值</th><th>当前值</th><th>是否满足</th></tr></thead>';
+                var i = 0;
+                var ok = true;
+                for (i = 0; i < res.length; i++) {
+                    if (res[i].key == 'approve') tablehtml += '<tr><td>' + res[i].name + '</td><td colspan="3">' + (res[i].config ? '是' : '否') + '</td></tr>'; else tablehtml += '<tr><td>' + res[i].name + '</td><td>' + res[i].config + '</td><td>' + res[i].mine + '</td><td>' + (res[i].ok ? 'OK' : '不满足') + '</td></tr>';
+                    if (!res[i].ok) ok = false
+                }
+                tablehtml += '</table>';
+                var data = {action: SYS.base + '/board/' + b + '/ajax_join_member.json', requesttable: tablehtml};
+                var btns = [];
+                i = 0;
+                if (ok) btns[i++] = {
+                    text: '申请成为驻版用户', click: function () {
+                        $(this).dialog('close');
+                        DIALOG.confirmDialog('您确实要申请成为【' + b + '】的驻版用户吗?', function () {
+                            $.post(SYS.base + '/board/' + b + '/ajax_join_member.json', {}, function (res2) {
+                                DIALOG.ajaxDialog(res2)
+                            })
+                        })
+                    }
+                };
+                btns[i] = {
+                    text: SYS.code.COM_CANCAL, click: function () {
+                        $(this).dialog('close')
+                    }
+                };
+                var d = DIALOG.formDialog(_.template($('#tmpl_member').html())(data), {width: 600, buttons: btns})
+            });
+            return false
+        });
+        $('.view_member_flag').click(function () {
+            $.get(SYS.base + '/board/' + b + '/ajax_view_member_flag.json', {}, function (res) {
+                var d = DIALOG.formDialog(_.template($('#tmpl_member_flag').html())({content: res}), {
+                    width: 700,
+                    buttons: [{
+                        text: '关闭', click: function () {
+                            $(this).dialog('close')
+                        }
+                    }]
+                })
+            })
+        })
+    }
+});</script>
