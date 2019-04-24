@@ -13,21 +13,27 @@ from bbssmth.settings import ES_HOST
 class BbssmthPipeline(object):
     def __init__(self):
         self.index = 'newsmth'
+        self.doc = 'doc'
         self.es = Elasticsearch(ES_HOST)
 
     def process_item(self, item, spider):
         body = {
-            'title': item.get('tile'),
-            'url':item.get('url'),
-            'content':item.get('content'),
-            'author':item.get('author'),
-            'crawltime':item.get('crawltime'),
-            'reply':item.get('reply')
-                }
-        category=item.get('category')
+            'title': item.get('title'),
+            'url': item.get('url'),
+            'content': item.get('content'),
+            'author': item.get('author'),
+            'crawltime': item.get('crawltime'),
+            'reply': item.get('reply'),
+            'category': item.get('category')
+
+        }
+        print('回复内容')
+        print(item.get('reply'))
+
+        
 
         try:
-            self.es.index(index=self.index, doc_type=category, body=body)
+            self.es.index(index=self.index, doc_type=self.doc, body=body)
         except Exception as e:
             log.msg('错误 >>>>>')
             log.msg(e)

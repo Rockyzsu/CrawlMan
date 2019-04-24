@@ -4,7 +4,9 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+import time
+import config
+import requests
 from scrapy import signals
 
 
@@ -78,8 +80,25 @@ class BbssmthDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        return None
+        proxy=self.get_proxy()
+        request.meta['proxy']=proxy
+        # return None
 
+    def get_proxy(self,retry=5):
+        proxyurl = 'http://{}:8101/dynamicIp/common/getDynamicIp.do'.format(config.proxyip)
+        for i in range(1, retry + 1):
+            try:
+                r = requests.get(proxyurl, timeout=10)
+            except Exception as e:
+                print(e)
+                print('Failed to get proxy ip, retry ' + str(i))
+                time.sleep(1)
+            else:
+                js = r.json()
+                proxyServer = 'http://{0}:{1}'.format(js.get('ip'), js.get('port'))
+                return proxyServer
+
+        return None
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
 
