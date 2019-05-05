@@ -5,7 +5,7 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import time
-import config
+from bbssmth import config
 import requests
 from scrapy import signals
 

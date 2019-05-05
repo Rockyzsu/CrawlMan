@@ -3,7 +3,7 @@
 # @Time : 2019/4/21 0:35
 # @File : testcase.py
 import time
-import config
+from bbssmth import config
 import requests
 
 
