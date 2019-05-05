@@ -19,7 +19,7 @@ end
 class JDBookSpider(scrapy.Spider):
     name = "jd_book"
     allowed_domains = ["search.jd.com"]
-    kw='证券'
+    kw='股票'
     base_url = 'https://search.jd.com/Search?keyword={}&enc=utf-8&wq={}'.format(kw,kw)
 
     def start_requests(self):

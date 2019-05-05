@@ -11,7 +11,7 @@ from scrapy import Request, Spider, FormRequest
 class BbsSMTH(Spider):
     name = 'bbssm'
     url = 'http://www.newsmth.net/nForum/board/{}?ajax'
-
+    board='Age'
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate',
@@ -72,7 +72,7 @@ class BbsSMTH(Spider):
                       )
 
     def update_cookie(self, response):
-        board = 'Stock'  # 量化交易
+        board = self.board  # 量化交易
         yield Request(
             url=self.url.format(board),
             meta={'board': board,
