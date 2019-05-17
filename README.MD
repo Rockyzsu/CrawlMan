@@ -11,3 +11,7 @@
 * tencentjob:腾讯职位抓取
 * stockholder:股东数据抓取
 * csdn:csdn博客排名抓取
+* 51jbnet:51脚本 文章分类爬取
+* cnbeta: cnbeta爬虫
+* youdao_dictionary:有道词典js加密破解
+* tencentjob:腾讯工作岗位爬取

@@ -30,7 +30,6 @@ class BbssmthPipeline(object):
         print('回复内容')
         print(item.get('reply'))
 
-        
 
         try:
             self.es.index(index=self.index, doc_type=self.doc, body=body)
