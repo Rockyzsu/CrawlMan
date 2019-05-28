@@ -5,6 +5,7 @@
 * lanrentingshu:每天心理学 (懒人听书)
 * bilibili:bilibili视频抓取
 * Ergeduoduo:儿歌多多
+* htqyy: 好听轻音乐 爬取轻音乐mp3
 * MyLibrary:图书馆抓取个人的阅读记录
 * qianfangyiguan:千帆易观数据抓取
 * yinyonbao:应用宝app排名数据抓取
