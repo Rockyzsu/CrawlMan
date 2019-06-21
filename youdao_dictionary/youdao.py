@@ -22,7 +22,6 @@ def get_sign(word, salt):
     ret = md5_('fanyideskweb' + word + salt + 'p09@Bn{h02_BIEe]$P^nG')
     return ret
 
-
 def youdao(word):
     url = 'http://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
     headers = {
@@ -34,7 +33,6 @@ def youdao(word):
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'X-Requested-With': 'XMLHttpRequest',
         'Referer': 'http://fanyi.youdao.com/',
-        'Content-Length': '252',
         'Cookie': 'YOUDAO_MOBILE_ACCESS_TYPE=1; OUTFOX_SEARCH_USER_ID=1672542763@10.169.0.83; JSESSIONID=aaaWzxpjeDu1gbhopLzKw; ___rl__test__cookies=1550913722828; OUTFOX_SEARCH_USER_ID_NCOO=372126049.6326876',
         'Connection': 'keep-alive',
         'Pragma': 'no-cache',
@@ -59,8 +57,18 @@ def youdao(word):
         data=post_data
     )
 
-    for item in r.json().get('smartResult',{}).get('entries'):
-        print(item)
+    js_data = r.json()
+    smart_result= js_data.get('smartResult', {})
 
-word='student'
+    if smart_result:
+        for item in smart_result.get('entries'):
+            print(item)
+
+    translate_result = js_data.get('translateResult',[])
+    if translate_result:
+        for items in translate_result:
+            for item in items:
+                print(item.get('tgt'))
+
+word='我喜欢吃鸡腿'
 youdao(word)
