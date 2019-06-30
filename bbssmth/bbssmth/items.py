@@ -5,16 +5,17 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item,Field
 
 
-class BbssmthItem(scrapy.Item):
+class BbssmthItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    title = scrapy.Field()
-    content = scrapy.Field()
-    create_time = scrapy.Field()
-    url = scrapy.Field()
-    crawltime = scrapy.Field()
-    category = scrapy.Field()
-    author = scrapy.Field()
+    # name = Field()
+    title = Field()
+    content = Field()
+    create_time = Field()
+    url = Field()
+    crawltime = Field()
+    category = Field()
+    author = Field()
+    reply = Field()

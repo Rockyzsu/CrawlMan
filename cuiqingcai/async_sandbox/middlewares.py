@@ -4,13 +4,11 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-import time
-from bbssmth import config
-import requests
+
 from scrapy import signals
 
 
-class BbssmthSpiderMiddleware(object):
+class AsyncSandboxSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -58,7 +56,7 @@ class BbssmthSpiderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class BbssmthDownloaderMiddleware(object):
+class AsyncSandboxDownloaderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
@@ -80,25 +78,8 @@ class BbssmthDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        proxy=self.get_proxy()
-        request.meta['proxy']=proxy
-        # return None
-
-    def get_proxy(self,retry=5):
-        proxyurl = 'http://{}:8101/dynamicIp/common/getDynamicIp.do'.format(config.proxyip)
-        for i in range(1, retry + 1):
-            try:
-                r = requests.get(proxyurl, timeout=10)
-            except Exception as e:
-                print(e)
-                print('Failed to get proxy ip, retry ' + str(i))
-                time.sleep(1)
-            else:
-                js = r.json()
-                proxyServer = 'http://{0}:{1}'.format(js.get('ip'), js.get('port'))
-                return proxyServer
-
         return None
+
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
 
