@@ -11,7 +11,7 @@ from scrapy import Request, Spider, FormRequest
 class BbsSMTH(Spider):
     name = 'bbssm'
     url = 'http://www.newsmth.net/nForum/board/{}?ajax'
-    board='Age'
+    board='Career_Upgrade'
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate',
