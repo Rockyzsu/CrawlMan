@@ -8,9 +8,8 @@ from jd.items import JdItem
 import pymongo
 class JDPipeline(object):
     def __init__(self):
-        self.mongo=pymongo.MongoClient('10.18.6.102')
-        self.doc=self.mongo['spider']['jd_book3']
+        self.mongo=pymongo.MongoClient('10.18.6.46',27001)
+        self.doc=self.mongo['spider']['jd_book']
     def process_item(self, item, spider):
         self.doc.insert(dict(item))
-
         return item

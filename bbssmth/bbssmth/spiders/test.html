@@ -1,0 +1,984 @@
+<script type="text/javascript">if (!document.getElementById('body')) {
+    var redir = window.location.href.replace('/nForum/', '/nForum/#!');
+    window.location.href = redir;
+}</script>
+<style type="text/css">.t-pre, .t-pre-bottom {
+    margin-top: 3px;
+    width: 100%
+}
+
+.t-pre-bottom .t-btn {
+    margin-left: 5px
+}
+
+.t-btn a {
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    margin-left: 2px;
+    margin-right: 4px;
+    padding: 2px 6px;
+    padding: 3px 6px 1px \9;
+    height: 16px;
+    vertical-align: middle
+}
+
+.t-btn a:hover {
+    color: #FFF
+}
+
+.t-btn .input {
+    color: #999;
+    font-size: 12px;
+    margin-right: 5px
+}
+
+.t-btn .rss {
+    padding: 0;
+    vertical-align: middle
+}
+
+.t-btn .rss samp {
+    width: 27px;
+    height: 15px
+}
+
+.t-btn label {
+    margin-right: 5px;
+    margin-left: 2px;
+    vertical-align: middle
+}
+
+.page {
+    float: right;
+    padding-top: 2px;
+    *padding-top: 0
+}
+
+.b-head div a {
+    color: #f0d97f;
+    padding-right: 5px
+}
+
+.b-head div a:hover {
+    color: #efdb8d
+}
+
+.b-content .middle {
+    text-align: center
+}
+
+.t_fewuser {
+    color: #FF0
+}
+
+.title_1 {
+    width: 140px;
+    padding-left: 10px
+}
+
+.title_2 {
+    width: 100px
+}
+
+.title_3 {
+    width: auto
+}
+
+.title_4 {
+    width: 45px
+}
+
+.title_5 {
+    width: 45px
+}
+
+.title_6 {
+    width: 45px
+}
+
+.title_7 {
+    width: 45px
+}
+
+.board-list thead th.title_8 {
+    padding-left: 7px
+}
+
+.title_8 {
+    width: 37px;
+    padding-left: 10px
+}
+
+.title_9 {
+    width: auto
+}
+
+.title_10 {
+    width: 64px
+}
+
+.title_11 {
+    width: 35px
+}
+
+.title_12 {
+    width: 97px
+}
+
+.title_13 {
+    width: 35px;
+    padding-left: 5px
+}
+
+.title_14 {
+    width: 35px
+}
+
+.title_15 {
+    width: auto
+}
+
+.title_16 {
+    width: 125px
+}
+
+.title_17 {
+    width: 80px
+}
+
+.middle {
+    text-align: center
+}
+
+.board-list .top .title_9 a {
+    color: red
+}
+
+.board-list .tag {
+    width: 16px;
+    height: 17px
+}
+
+.board-list .tag-att {
+    width: 7px;
+    height: 16px;
+    margin-left: 4px
+}
+
+.board-list .threads-tab {
+    font-weight: bold;
+    padding-left: 4px
+}
+
+.board-list .threads-tab a {
+    margin: 0 3px
+}
+
+#deny_list th.c_op {
+    padding-left: 5px
+}
+
+#deny_list .c_num {
+    width: 37px;
+    padding-left: 7px
+}
+
+#deny_list .c_userid {
+    width: 120px
+}
+
+#deny_list .c_userid input {
+    width: 90px
+}
+
+#deny_list .c_reason input {
+    width: 150px;
+    margin-right: 10px
+}
+
+#deny_list select {
+    background-color: #ffffff
+}
+
+#deny_list .c_desc {
+    width: 160px
+}
+
+#deny_list .c_desc input {
+    width: 30px
+}
+
+#deny_list .c_op {
+    width: 85px
+}
+
+#deny_list .c_op input {
+    margin-left: 5px
+}
+
+#m_deny li span {
+    padding-right: 4px;
+    vertical-align: middle
+}
+
+#m_deny .input-text {
+    width: 150px;
+    margin-right: 4px
+}
+
+#board_banner {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0
+}
+
+#board_banner div.swf_wrapper {
+    z-index: -1;
+    display: inline-block
+}
+
+#board_banner div.swf_overlay {
+    z-index: 0;
+    cursor: pointer;
+    background-color: #ffffff;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+    display: inline-block
+}
+
+.apptable {
+    width: 100%
+}
+
+.apptable td {
+    border-bottom: 1px solid #c9d7f1;
+    vertical-align: center;
+    height: 26px;
+    text-align: center
+}
+
+.apptable pre {
+    margin: 0 auto;
+    overflow: scroll;
+    height: 500px;
+    width: 550px;
+    text-align: left
+}
+
+.apptable td.sugg {
+    font-size: 14px;
+    font-weight: bold
+}
+
+#bm_apply td {
+    text-align: center
+}</style>
+<div class="t-pre">
+    <div class="page">
+        <ul class="pagination">
+            <li class="page-pre">主题数:<i>308724</i>&emsp;分页:</li>
+            <li>
+                <ol title="分页列表" class="page-main">
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10289" title="上一页"><<</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=1" title="转到第1页">1</a></li>
+                    <li class="page-omit">...</li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10284" title="转到第10284页">10284</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10285" title="转到第10285页">10285</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10286" title="转到第10286页">10286</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10287" title="转到第10287页">10287</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10288" title="转到第10288页">10288</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10289" title="转到第10289页">10289</a></li>
+                    <li class="page-select"><a title="当前页">10290</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10291" title="转到第10291页">10291</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10291" title="下一页">>></a></li>
+                </ol>
+            </li>
+            <li class="page-suf"></li>
+        </ul>
+    </div>
+    <div class="t-btn"><a href="/nForum/article/Stock/post" class="b-post button">发表文章</a><a
+            href="/nForum/article/Stock/tmpl" class="b-post button">模版发文</a><a href="/nForum/board/Stock/member"
+                                                                               class="button">驻版用户</a><a
+            href="/nForum/elite/path?v=%2Fgroups%2Fsocial.faq%2FStock" class="button">精华区</a><a
+            href="/nForum/board/Stock/notes" class="button">备忘录</a><a href="javascript:void(0)" id="b_fav"
+                                                                      class="button" _b="Stock">收藏</a>
+        <!--<a href="https://exp.newsmth.net/nforum/board/Stock" target="_blank" class="button">体验模式</a>--><a
+                href="/nForum/rss/board-Stock" class="rss" target="_blank"><samp class="ico-pos-rss"></samp></a></div>
+</div>
+<div class="b-head corner"><span class="n-right">版主:&ensp;<a href="/nForum/user/query/teaair">teaair</a>&ensp;<a
+        href="/nForum/user/query/cts">cts</a>&ensp;<a href="/nForum/user/query/oktay">oktay</a>&ensp;<a
+        href="/nForum/user/query/sanqi">sanqi</a></span><span class="n-left">本版当前共有616人在线<span
+        title="发生于2015-07-06 13:41:01">[最高5049人]</span>&emsp;今日帖数1449&emsp;版面积分:63532</span></div>
+<div class="b-content">
+    <div id="pp_board"></div>
+    <table class="board-list tiz" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="title_8">状态</th>
+            <th class="title_9 middle">主题</th>
+            <th class="title_10">发帖时间</th>
+            <th class="title_12">|&ensp;作者</th>
+            <th class="title_11 middle">评分</th>
+            <th class="title_11 middle">Like</th>
+            <th class="title_11 middle">回复</th>
+            <th class="title_10">最新回复</th>
+            <th class="title_12">|&ensp;作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/46078" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/46078">审核通过Stock版治版方针</a></td>
+            <td class="title_10">2008-01-30</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fancyrabbit" class="c63f">fancyrabbit</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/46078?p=1#a0" title="跳转至最后回复">2008-01-30</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fancyrabbit" class="c09f">fancyrabbit</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/43609" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/43609">[版面变更] 更改 Stock_LIVE 版面属性 &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-29</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/itsokbaby" class="c63f">itsokbaby</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/43609?p=1#a0" title="跳转至最后回复">2008-01-29</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/itsokbaby" class="c09f">itsokbaby</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/37537" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/37537">[合集] 晚上聊聊最近的行情吧</a></td>
+            <td class="title_10">2008-01-28</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c63f">Pksn</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/37537?p=1#a0" title="跳转至最后回复">2008-01-28</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c09f">Pksn</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/37536" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/37536">[合集] 政府临时干预引发“非暴力不合作” &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-28</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c63f">Pksn</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/37536?p=1#a0" title="跳转至最后回复">2008-01-28</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c09f">Pksn</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/32838" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/32838">引申万策略（中小盘股进入下半场） 谈最近垃圾暴涨的看法。。</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2008-01-24</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/norle" class="c63f">norle</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Stock/32838?p=1#a1" title="跳转至最后回复">2008-01-24</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/norle" class="c09f">norle</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/31816" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/31816">关于暴跌&#40;胡紫薇版&#41; &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-24</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/i8086" class="c63f">i8086</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/31816?p=1#a0" title="跳转至最后回复">2008-01-24</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/i8086" class="c09f">i8086</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/27669" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/27669">时寒冰&#45;&#45;剖析A股暴跌真相：谁能力挽狂澜zz</a></td>
+            <td class="title_10">2008-01-23</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/hallpetch" class="c63f">hallpetch</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/27669?p=1#a0" title="跳转至最后回复">2008-01-23</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/hallpetch" class="c09f">hallpetch</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/26007" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/26007">我D喉舌人民网新华网痛骂中国平安！</a></td>
+            <td class="title_10">2008-01-23</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/jczl1124" class="c63f">jczl1124</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/26007?p=1#a0" title="跳转至最后回复">2008-01-23</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/jczl1124" class="c09f">jczl1124</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/25942" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/25942">Stock复牌说明</a></td>
+            <td class="title_10">2008-01-23</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c63f">Pksn</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/25942?p=1#a0" title="跳转至最后回复">2008-01-23</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c09f">Pksn</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/17961" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/17961">Re: 在办公室看大盘很不方便，怎么办？</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2008-01-22</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/原帖已删除" class="c63f">原帖已删除</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/17961?p=1#a0" title="跳转至最后回复">2008-01-22</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/myheart1024" class="c09f">myheart1024</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/15344" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/15344">01.21今日大盘和我的pp</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2008-01-21</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c63f">sjmg</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">1</td>
+            <td class="title_10"><a href="/nForum/article/Stock/15344?p=1#a1" title="跳转至最后回复">2008-01-21</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c09f">sjmg</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/14922" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/14922">审核通过Stock_LIVE版治版方针</a></td>
+            <td class="title_10">2008-01-21</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fancyrabbit" class="c63f">fancyrabbit</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/14922?p=1#a0" title="跳转至最后回复">2008-01-21</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fancyrabbit" class="c09f">fancyrabbit</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/12633" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-b"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/12633">Stock即将复牌的说明</a></td>
+            <td class="title_10">2008-01-20</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c63f">Pksn</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/12633?p=1#a0" title="跳转至最后回复">2008-01-20</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c09f">Pksn</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/12024" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/12024">我对A股市盈率的看法</a></td>
+            <td class="title_10">2008-01-19</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/car" class="c63f">car</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/12024?p=1#a0" title="跳转至最后回复">2008-01-19</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/car" class="c09f">car</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/11385" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/11385">批判几个韭菜观点 &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-18</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/pnxKeeper" class="c63f">pnxKeeper</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/11385?p=1#a0" title="跳转至最后回复">2008-01-18</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/pnxKeeper" class="c09f">pnxKeeper</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/11165" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/11165">01.18今日大盘和我的pp</a></td>
+            <td class="title_10">2008-01-18</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c63f">sjmg</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/11165?p=1#a0" title="跳转至最后回复">2008-01-18</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c09f">sjmg</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/8303" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/8303">今天的情况 &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LongTimeAgo" class="c63f">LongTimeAgo</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/8303?p=1#a0" title="跳转至最后回复">2008-01-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/LongTimeAgo" class="c09f">LongTimeAgo</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/8228" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/8228">王国强blog</a></td>
+            <td class="title_10">2008-01-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/maxy" class="c63f">maxy</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/8228?p=1#a0" title="跳转至最后回复">2008-01-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/maxy" class="c09f">maxy</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/8151" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/8151">01.17今日大盘和我的pp</a></td>
+            <td class="title_10">2008-01-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c63f">sjmg</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/8151?p=1#a0" title="跳转至最后回复">2008-01-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c09f">sjmg</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/6893" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/6893">广发证券万兵呼吁股民退出休息</a></td>
+            <td class="title_10">2008-01-17</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/i8O86" class="c63f">i8O86</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/6893?p=1#a0" title="跳转至最后回复">2008-01-17</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/i8O86" class="c09f">i8O86</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/5665" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/5665">俺的原创... &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/AromaGirl" class="c63f">AromaGirl</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/5665?p=1#a0" title="跳转至最后回复">2008-01-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/AromaGirl" class="c09f">AromaGirl</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/5197" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/5197">2008 解禁时间表 zz</a></td>
+            <td class="title_10">2008-01-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/BigWig" class="c63f">BigWig</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/5197?p=1#a0" title="跳转至最后回复">2008-01-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/BigWig" class="c09f">BigWig</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/4839" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-normal"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/4839">新的草甘磷研究报告</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2008-01-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/liu" class="c63f">liu</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/4839?p=1#a0" title="跳转至最后回复">2008-01-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/liu" class="c09f">liu</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/4838" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/4838">China raises reserve ratio requirement by .5&#37;
+                &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/haoowen" class="c63f">haoowen</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/4838?p=1#a0" title="跳转至最后回复">2008-01-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/haoowen" class="c09f">haoowen</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/4714" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/4714">01.16今日大盘和我的pp</a></td>
+            <td class="title_10">2008-01-16</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c63f">sjmg</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/4714?p=1#a0" title="跳转至最后回复">2008-01-16</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c09f">sjmg</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/1988" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/1988">01.15今日大盘和我的pp</a><samp
+                    class="tag-att ico-pos-article-attach"></samp></td>
+            <td class="title_10">2008-01-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c63f">sjmg</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/1988?p=1#a0" title="跳转至最后回复">2008-01-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/sjmg" class="c09f">sjmg</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/31" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/31">Re: Stock要只读了</a></td>
+            <td class="title_10">2008-01-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/原帖已删除" class="c63f">原帖已删除</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/31?p=1#a0" title="跳转至最后回复">2008-01-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Pksn" class="c09f">Pksn</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/52" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/52">[公告]Stock版公开增发Stock_Live网上路演公告 &#40;转载&#41;</a></td>
+            <td class="title_10">2008-01-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fattycrab" class="c63f">fattycrab</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/52?p=1#a0" title="跳转至最后回复">2008-01-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/fattycrab" class="c09f">fattycrab</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/50" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/50">con!</a></td>
+            <td class="title_10">2008-01-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/DennisZz9" class="c63f">DennisZz9</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/50?p=1#a0" title="跳转至最后回复">2008-01-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/DennisZz9" class="c09f">DennisZz9</a></td>
+        </tr>
+        <tr>
+            <td class="title_8"><a target="_blank" href="/nForum/article/Stock/49" title="在新窗口打开此主题"><samp
+                    class="tag ico-pos-article-m"></samp></a></td>
+            <td class="title_9"><a href="/nForum/article/Stock/49">恭喜恭喜!</a></td>
+            <td class="title_10">2008-01-15</td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Archin" class="c63f">Archin</a></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle"></td>
+            <td class="title_11 middle">0</td>
+            <td class="title_10"><a href="/nForum/article/Stock/49?p=1#a0" title="跳转至最后回复">2008-01-15</a></td>
+            <td class="title_12">|&ensp;<a href="/nForum/user/query/Archin" class="c09f">Archin</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="t-pre-bottom">
+    <div class="page">
+        <ul class="pagination">
+            <li class="page-pre">主题数:<i>308724</i>&emsp;分页:</li>
+            <li>
+                <ol title="分页列表" class="page-main">
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10289" title="上一页"><<</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=1" title="转到第1页">1</a></li>
+                    <li class="page-omit">...</li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10284" title="转到第10284页">10284</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10285" title="转到第10285页">10285</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10286" title="转到第10286页">10286</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10287" title="转到第10287页">10287</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10288" title="转到第10288页">10288</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10289" title="转到第10289页">10289</a></li>
+                    <li class="page-select"><a title="当前页">10290</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10291" title="转到第10291页">10291</a></li>
+                    <li class="page-normal"><a href="/nForum/board/Stock?p=10291" title="下一页">>></a></li>
+                </ol>
+            </li>
+            <li class="page-suf"></li>
+        </ul>
+    </div>
+    <div class="t-btn">
+        <form method="get" action="/nForum/s/article" id="board_search"><input type="text" class="input-text input"
+                                                                               name="t1" placeholder="输入关键字" size="16"/><input
+                type="text" class="input-text input" name="au" placeholder="输入作者ID" size="12"/><input type="checkbox"
+                                                                                                      name="m"
+                                                                                                      id="c_m"/><label
+                for="c_m">精华帖</label><input type="checkbox" name="a" id="c_a"/><label for="c_a">带附件</label><input
+                type="submit" class="button" value="搜索"/>&emsp;&emsp;<input type="button" class="button" value="超级搜索"
+                                                                            onclick="window.open('http://ar.newsmth.net/search.jsp?boardname=Stock')"/><input
+                type="hidden" name="b" value="Stock"/>
+            <!--&emsp;&emsp;<a href="https://exp.newsmth.net/nforum/board/Stock" target="_blank" class="button">体验模式</a>-->
+        </form>
+    </div>
+</div>
+<div id="board_banner"></div>
+<script type="text/javascript">var bName = 'Stock';
+;$('#notice_nav').html('<a href="/nForum/mainpage">水木社区</a>&ensp;>>&ensp;<a href="/nForum/section/5">社会信息</a>&ensp;>>&ensp;<a href="/nForum/section/Wealth">投资理财</a>&ensp;>>&ensp;<a href="/nForum/board/Stock">股市</a>&ensp;>>&ensp;<a href="javascript:void(0)">文章列表</a>');
+$.setTitle('水木社区-股市');
+;</script>
+<script type="text/javascript">$(function () {
+    if (typeof have_topads !== 'undefined' && typeof bName !== 'undefined') {
+        $.getJSON(SYS.base + '/board/' + bName + '/ajax_topads.json', function (data) {
+            var html = '';
+            for (k in data) {
+                var link;
+                if (data[k].url == "") link = 'javascript:void(0);'; else link = data[k].url + '" target="_blank';
+                var pos = 'top_' + bName + '_' + k;
+                html += '<tr class="top ad"><td class="title_8"><a _pos="' + pos + '" href="' + link + '"><samp class="tag ico-pos-article-top"></samp></a></td><td class="title_9"><a _pos="' + pos + '" href="' + link + '">' + data[k].title + '</a></td><td class="title_10">' + data[k].date + '</td><td class="title_12">|&ensp;系统广告</td><td class="title_11"></td><td class="title_11"></td><td class="title_11 middle">0</td><td class="title_12"><a _pos="' + pos + '" href="' + link + '">' + data[k].date + '</a></td><td class="title_12">|&ensp;系统广告</td></tr>'
+            }
+            $('.tiz').prepend(html);
+            $('.tiz tr.ad a').click(function () {
+                $(this).pingback()
+            });
+            $('.board-list tbody tr:odd td').addClass('bg-odd')
+        })
+    } else {
+        $('.board-list tbody tr:odd td').addClass('bg-odd')
+    }
+    $('#board_search').submit(function () {
+        BODY.open($(this).attr('action') + '?' + _.map($(this).getPostData(), function (v, k) {
+            v = encodeURIComponent(encodeURIComponent(v));
+            return k + '=' + v
+        }).join('&'));
+        return false
+    });
+    $('#board_search input[placeholder]').placeholder();
+    var validPost = function () {
+        if (!SESSION.get('is_login')) {
+            $('#u_login_id').alertDialog(SYS.code.MSG_LOGIN);
+            return false
+        }
+    };
+    $('#board_search input[placeholder]').placeholder();
+    $('#body').on('click', '.b-post', validPost).on('click', '#b_fav', function () {
+        var self = this;
+        DIALOG.confirmDialog('确认收藏此版面?', function () {
+            var url = SYS.base + "/fav/op/0.json", data = {ac: 'ab', v: $(self).attr('_b')};
+            $.post(url, data, function (json) {
+                if (json.ajax_st == 1) APP.renderTree();
+                DIALOG.ajaxDialog(json)
+            }, "json")
+        })
+    });
+    $('#body').on('click', '#apply_switch', function () {
+        $('.apptable').hide();
+        $('#bm_apply').show()
+    });
+    $('#body').on('submit', '#bm_apply', function () {
+        var empty = false;
+        $(this).find('textarea').each(function () {
+            if ($(this).val() == '') {
+                empty = true
+            }
+        });
+        if (empty) {
+            alert('必须回答所有问题!');
+            return false
+        }
+        var btn = $(this).find('input[type="submit"]').loading(true);
+        $.post($(this).attr('action'), $(this).getPostData(), function (json) {
+            btn.loading(false);
+            DIALOG.ajaxDialog(json)
+        }, 'json');
+        return false
+    });
+    if (typeof bName !== 'undefined') {
+        $.getJSON(SYS.base + '/board/' + bName + '/ajax_boardbanner.json', function (data) {
+            if (data) {
+                var pos = 'boardbanner_' + bName;
+                var html = '';
+                if (/\.swf/.test(data.file)) {
+                    html += '<div class="swf_wrapper" _pos="' + pos + '" _file="' + SYS.static + SYS.base + data.file + '" _width="' + data.width + '" _height="' + data.height + '"></div>';
+                    if (data.url.length > 0) {
+                        html += '<div class="swf_overlay" _url="' + data.url + '" style="width:' + data.width + 'px;height:' + data.height + 'px;margin-top:-' + data.height + 'px"></div>'
+                    }
+                } else {
+                    if (data.url == '') {
+                        html += '<a href="javascript:void(0);" _pos="' + pos + '"><img src="' + SYS.static + SYS.base + data.file + '" /></a>'
+                    } else {
+                        html += '<a href="' + data.url + '" target="_blank" _pos="' + pos + '"><img src="' + SYS.static + SYS.base + data.file + '" /></a>'
+                    }
+                }
+                $('#board_banner').html(html);
+                $('#board_banner a').click(function () {
+                    $(this).pingback()
+                });
+                $('#board_banner div.swf_wrapper').each(function () {
+                    var width = $(this).attr('_width');
+                    var height = $(this).attr('_height');
+                    var file = $(this).attr('_file');
+                    $(this).width(width).height(height);
+                    $(this).flash({swf: file, height: height, width: width, wmode: 'transparent'});
+                    $(this).mouseup(function () {
+                        $(this).pingback()
+                    })
+                });
+                $('#body').on('click', '#board_banner div.swf_overlay', function () {
+                    $(this).prev().mouseup();
+                    window.open($(this).attr('_url'))
+                })
+            }
+        })
+    }
+    if ($('#deny_list').length > 0) {
+        var b = $('#add_deny').attr('_b'), reason = SYS.cache(b + '_denyreasons');
+        if (reason) {
+            $('#deny_list select').append(_.reduce(reason, function (ret, item) {
+                ret += ('<option value="' + item.desc + '">' + item.desc + '</option>');
+                return ret
+            }, ''))
+        } else {
+            $.get(SYS.base + '/board/' + b + '/ajax_denyreasons.json', function (res) {
+                $('#deny_list select').append(_.reduce(res, function (ret, item) {
+                    ret += ('<option value="' + item.desc + '">' + item.desc + '</option>');
+                    return ret
+                }, ''));
+                SYS.cache(b + '_denyreasons', res)
+            })
+        }
+        $('#deny_list select').on('change', function () {
+            $(this).prev().val($(this).val()).change()
+        });
+        $('#add_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var data = {
+                id: tr.find('.c_userid input').val(),
+                reason: tr.find('.c_reason input').val(),
+                day: tr.find('.c_desc input').val()
+            };
+            if (data.id == '' || data.reason == '' || data.day == '') {
+                DIALOG.alertDialog('请输入封禁信息!');
+                return false
+            }
+            DIALOG.confirmDialog('确认封禁 ' + data.id + ' ' + data.day + ' 天?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_adddeny.json', data, function (res) {
+                    DIALOG.ajaxDialog(res)
+                }, 'json')
+            });
+            return false
+        });
+        $('.mod_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var t = new Date();
+            var now = parseInt(t.getTime() / 1000);
+            var offset = t.getTimezoneOffset() * 60;
+            var free = tr.find('.c_desc span').text();
+            t.setTime(free * 1000);
+            var data = {
+                action: SYS.base + '/board/' + b + '/ajax_moddeny.json',
+                id: tr.find('.c_userid').text(),
+                reason: $.trim(tr.find('.c_reason').text()),
+                freetime: t.getFullYear() + '年' + (t.getMonth() + 1) + '月' + t.getDate() + '日',
+                day: Math.floor((free - offset) / 86400) - Math.floor((now - offset) / 86400),
+                maxday: SESSION.get('is_admin') ? 70 : 14
+            };
+            var d = DIALOG.formDialog(_.template($('#tmpl_denymod').html())(data), {
+                width: 450,
+                buttons: [{
+                    text: SYS.code.COM_SUBMIT, click: function () {
+                        var f = $(this).find('#m_deny');
+                        $.post(f.attr('action'), f.getPostData(), function (repo) {
+                            DIALOG.ajaxDialog(repo)
+                        });
+                        $(this).dialog('close')
+                    }
+                }, {
+                    text: SYS.code.COM_CANCAL, click: function () {
+                        $(this).dialog('close')
+                    }
+                }]
+            }).on('change', 'select', function () {
+                $(this).prev().val($(this).val()).change()
+            });
+            d.find('select').html($('#deny_list select').html());
+            return false
+        });
+        $('.del_deny').click(function () {
+            var tr = $(this).parents('tr:first');
+            var id = tr.find('.c_userid').text();
+            DIALOG.confirmDialog('确认解封 ' + id + ' 吗?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_deldeny.json', {id: id}, function (res) {
+                    DIALOG.ajaxDialog(res)
+                }, 'json')
+            });
+            return false
+        });
+        $('#deny_list input[type="button"]').prop('disabled', false)
+    }
+    if ($('#member_list').attr('_b') != undefined) {
+        var b = $('#member_list').attr('_b');
+        $('.quit_member').click(function () {
+            DIALOG.confirmDialog('您确实要取消在【' + b + '】版的驻版吗?', function () {
+                $.post(SYS.base + '/board/' + b + '/ajax_quit_member.json', {}, function (res) {
+                    DIALOG.ajaxDialog(res)
+                })
+            })
+        });
+        $('.join_member').click(function () {
+            $.get(SYS.base + '/board/' + b + '/ajax_member_request.json', {}, function (res) {
+                var tablehtml = '<table class="board-list"><thead><tr><th>驻版要求</th><th>最低值</th><th>当前值</th><th>是否满足</th></tr></thead>';
+                var i = 0;
+                var ok = true;
+                for (i = 0; i < res.length; i++) {
+                    if (res[i].key == 'approve') tablehtml += '<tr><td>' + res[i].name + '</td><td colspan="3">' + (res[i].config ? '是' : '否') + '</td></tr>'; else tablehtml += '<tr><td>' + res[i].name + '</td><td>' + res[i].config + '</td><td>' + res[i].mine + '</td><td>' + (res[i].ok ? 'OK' : '不满足') + '</td></tr>';
+                    if (!res[i].ok) ok = false
+                }
+                tablehtml += '</table>';
+                var data = {action: SYS.base + '/board/' + b + '/ajax_join_member.json', requesttable: tablehtml};
+                var btns = [];
+                i = 0;
+                if (ok) btns[i++] = {
+                    text: '申请成为驻版用户', click: function () {
+                        $(this).dialog('close');
+                        DIALOG.confirmDialog('您确实要申请成为【' + b + '】的驻版用户吗?', function () {
+                            $.post(SYS.base + '/board/' + b + '/ajax_join_member.json', {}, function (res2) {
+                                DIALOG.ajaxDialog(res2)
+                            })
+                        })
+                    }
+                };
+                btns[i] = {
+                    text: SYS.code.COM_CANCAL, click: function () {
+                        $(this).dialog('close')
+                    }
+                };
+                var d = DIALOG.formDialog(_.template($('#tmpl_member').html())(data), {width: 600, buttons: btns})
+            });
+            return false
+        });
+        $('.view_member_flag').click(function () {
+            $.get(SYS.base + '/board/' + b + '/ajax_view_member_flag.json', {}, function (res) {
+                var d = DIALOG.formDialog(_.template($('#tmpl_member_flag').html())({content: res}), {
+                    width: 700,
+                    buttons: [{
+                        text: '关闭', click: function () {
+                            $(this).dialog('close')
+                        }
+                    }]
+                })
+            })
+        })
+    }
+});</script>
