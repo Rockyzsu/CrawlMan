@@ -9,50 +9,68 @@ import redis
 from sandbox.items import SpiderItem
 from sandbox.utility import get_header
 import redis
+
+
 # get
 class WebGetSpider(scrapy.Spider):
     name = 'chahaoba'
-    BASE_URL = 'https://www.chahaoba.com/index.php?title=%E6%89%8B%E6%9C%BA%E5%85%AD%E4%BD%8D&DPL_scrollDir=up&DPL_count=500&DPL_offset={}'
-    headers ={'User-Agent':'Google Chrome'}
+    BASE_URL = 'https://www.chahaoba.com/index.php?title=%E6%89%8B%E6%9C%BA%E5%85%AD%E4%BD%8D&amp&DPL_scrollDir=up&amp&DPL_count=500&amp&DPL_offset={}&amp&action=purge'
+    headers = {
+        'Host': 'www.chahaoba.com', 'Connection': 'keep-alive', 'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/76.0.3809.100Safari/537.36',
+        'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'Sec-Fetch-Site': 'same-origin', 'Accept-Encoding': 'gzip,deflate,br',
+        'Accept-Language': 'zh,en;q=0.9,en-US;q=0.8',
+        'Cookie': 'Hm_lvt_ea025606d5db5a3ecdcc88d26511d268=1566451838;_ga=GA1.2.789819984.1566451839;_gid=GA1.2.1538543297.1566451839;Hm_lpvt_ea025606d5db5a3ecdcc88d26511d268=1566467072;_gat_gtag_UA_241337_12=1'
+    }
     r = redis.StrictRedis('10.18.6.46', db=8, decode_responses=True)
 
     def start_requests(self):
 
-
-
         total = 47108 + 500
         # total = 1000
-        for i in range(0,total,500):
-
+        for i in range(0, total, 500):
             yield Request(
-            url=self.BASE_URL.format(i),
+                url=self.BASE_URL.format(i),
                 headers=self.headers
-        )
+            )
 
     def parse(self, response):
 
         number_list = response.xpath('//div[@id="mw-content-text"]//ol')[0]
+        nodes = number_list.xpath('.//li')
+        try:
+            start_at = re.search('<ol start="(.*?)">', response.text).group(1)
+        except Exception as e:
+            print(e)
+        else:
+            print(f'start at {start_at}')
+        print(f'len is {len(nodes)}')
 
-        for number in number_list.xpath('.//li'):
+        for number in nodes:
             next_url = response.urljoin(number.xpath('.//a/@href').extract_first())
             _number = response.urljoin(number.xpath('.//a/@title').extract_first())
 
-            yield Request(
-                url=next_url,
-                headers=self.headers,
-                callback=self.parse_item,
-                meta={'number': _number}
-            )
+            if self.r.sismember('visited_url', _number):
+                continue
 
-
-
+            else:
+                yield Request(
+                    url=next_url,
+                    headers=self.headers,
+                    callback=self.parse_item,
+                    meta={'number': _number}
+                )
 
     def parse_item(self, response):
-
+        _number_ = response.meta['number']
         try:
             root = response.xpath('//div[@id="mw-content-text"]')[0]
         except Exception as e:
             return
+
+        self.r.sadd('visited_url', _number_)
 
         li_node = root.xpath('.//ul/li[contains(text(),"，归属省份地区：")]')
         # li_node = root.xpath('//p[contains(text(),"或者直接点击下面列表中")]/following::*')
@@ -68,11 +86,10 @@ class WebGetSpider(scrapy.Spider):
 
             for field in item.fields:
                 try:
-                    item[field]=eval(field)
+                    item[field] = eval(field)
                 except Exception as e:
                     print(e)
             yield item
-
 
 
 # post
@@ -108,11 +125,11 @@ class WebPostSpider(scrapy.Spider):
             mainValue = row['mainValue']
             orgName = row['orgName']
 
-            spiderItem= SpiderItem()
+            spiderItem = SpiderItem()
 
             for field in spiderItem.fields:
                 try:
-                    spiderItem[field]=eval(field)
+                    spiderItem[field] = eval(field)
                 except Exception as e:
                     logging.warning('can not find define of {}'.format(field))
                     logging.warning(e)
@@ -123,14 +140,15 @@ class WebPostSpider(scrapy.Spider):
         pages = int(total / 500) if total % 500 == 0 else int(total / 500) + 1
         current_page = response.meta['page']
         if pages > current_page:
-            current_page+=1
+            current_page += 1
             data = {
                 "limit": "500",
                 "offset": str(current_page),
                 "sortOrder": "asc",
                 "inputValue": card,
             }
-            yield FormRequest(url=self.post_url,headers=self.headers,formdata=data,meta={'page':current_page,'card':card})
+            yield FormRequest(url=self.post_url, headers=self.headers, formdata=data,
+                              meta={'page': current_page, 'card': card})
 
 
 class BussinessRisk(scrapy.Spider):
@@ -144,7 +162,6 @@ class BussinessRisk(scrapy.Spider):
         self.re_ = re.compile('<em>|</em>')
 
         self.rds = redis.StrictRedis('10.18.6.46', db=7, decode_responses=True)
-
 
         self.refer = "http://114.80.154.45/Wind.WFC.Enterprise.Web/PC.Front/Company/Company.html?companyid=&companycode=1211761886&windCode={windCode}&from=openBu3"
 
@@ -194,7 +211,7 @@ class BussinessRisk(scrapy.Spider):
 
                 yield item
 
-        corp_strs = self.rds.srandmember(self.redis_key, 2) # 在pipeline 中删除
+        corp_strs = self.rds.srandmember(self.redis_key, 2)  # 在pipeline 中删除
 
         # 迭代链接
         if corp_strs is not None:
@@ -219,6 +236,3 @@ class BussinessRisk(scrapy.Spider):
         else:
             print('queue empty, exit')
             return
-
-
-

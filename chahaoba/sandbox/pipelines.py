@@ -7,9 +7,10 @@
 from sandbox.models import SpiderModels, DBSession
 import logging
 import pymongo
+import pymysql
 from sandbox import config
 from sandbox import settings
-
+from scrapy.exceptions import DropItem
 
 class SQLPipeline(object):
     def __init__(self):
@@ -31,8 +32,10 @@ class SQLPipeline(object):
             self.session.commit()
 
         except Exception as e:
-            logging.error('>>>> 插入数据库失败{}'.format(e))
+            print(e)
+            logging.error('>>>> 重复数据')
             self.session.rollback()
-
-        return item
+            DropItem(item)
+        else:
+            return item
 
