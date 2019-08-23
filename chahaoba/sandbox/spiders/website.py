@@ -26,17 +26,35 @@ class WebGetSpider(scrapy.Spider):
     }
     r = redis.StrictRedis('10.18.6.46', db=8, decode_responses=True)
 
+    total = 47108 + 500
+
     def start_requests(self):
 
-        total = 47108 + 500
-        # total = 1000
-        for i in range(0, total, 500):
-            yield Request(
-                url=self.BASE_URL.format(i),
-                headers=self.headers
-            )
+        # total = 47108 + 500
+        # # total = 1000
+        # for i in range(0, total, 500):
+        #     yield Request(
+        #         url=self.BASE_URL.format(i),
+        #         headers=self.headers
+        #     )
+        i = 0
+        yield Request(
+            url=self.BASE_URL.format(i),
+            headers=self.headers,
+            meta={'page': i}
+        )
 
     def parse(self, response):
+
+        current_page = response.meta['page']
+
+        if current_page< self.total:
+            current_page+=500
+            yield Request(
+                url=self.BASE_URL.format(current_page),
+                headers=self.headers,
+                meta={'page': current_page}
+            )
 
         number_list = response.xpath('//div[@id="mw-content-text"]//ol')[0]
         nodes = number_list.xpath('.//li')
@@ -68,11 +86,15 @@ class WebGetSpider(scrapy.Spider):
         try:
             root = response.xpath('//div[@id="mw-content-text"]')[0]
         except Exception as e:
+            print(e)
             return
 
         self.r.sadd('visited_url', _number_)
 
         li_node = root.xpath('.//ul/li[contains(text(),"，归属省份地区：")]')
+        if len(li_node)==0:
+            print(f'node is empty ! {_number_}')
+
         # li_node = root.xpath('//p[contains(text(),"或者直接点击下面列表中")]/following::*')
         for node in li_node:
             _number = node.xpath('.//a[1]/@title').extract_first()
