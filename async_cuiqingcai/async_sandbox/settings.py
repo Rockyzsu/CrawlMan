@@ -13,10 +13,11 @@ BOT_NAME = 'async_sandbox'
 
 SPIDER_MODULES = ['async_sandbox.spiders']
 NEWSPIDER_MODULE = 'async_sandbox.spiders'
-
-
+REDIS_HOST = '10.18.6.46'
+REDIS_KEY = 'cuiqingcai_xx'
+REDIS_PORT=11111
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
+USER_AGENT = 'Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -95,3 +96,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+LOG_LEVEL = 'INFO'
+
+DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
