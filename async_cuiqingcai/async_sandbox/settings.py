@@ -13,12 +13,17 @@ BOT_NAME = 'async_sandbox'
 
 SPIDER_MODULES = ['async_sandbox.spiders']
 NEWSPIDER_MODULE = 'async_sandbox.spiders'
-REDIS_HOST = '10.18.6.46'
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT=6379
+REDIS_DB=0
 REDIS_KEY = 'cuiqingcai_xx'
-REDIS_PORT=11111
+
+MONGO_HOST='127.0.0.1'
+MONGO_PORT=27001
+MONGO_DB='spider'
+MONGO_DOC='cuiqincai'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
-
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
@@ -73,7 +78,9 @@ EXTENSIONS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'async_sandbox.pipelines.AsyncSQLPipeline': 300,
+   'async_sandbox.pipelines.AsyncSQLPipeline': None,
+   'async_sandbox.pipelines.JSONPipeline': 200,
+   'async_sandbox.pipelines.MongoPipeline': 300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

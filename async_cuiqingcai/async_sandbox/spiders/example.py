@@ -66,7 +66,7 @@ class ExampleSpider(scrapy.Spider):
 
         item['author'] = author
         item['created_at'] = created_at
-        item['content'] = content
+        # item['content'] = content
         visited=re.sub('浏览','',visited)
         item['visited'] = visited
         comment=re.sub('评论','',comment)

@@ -14,19 +14,15 @@ class DupeFilter(BaseDupeFilter):
     def from_settings(cls, settings):
         # result=(dict(settings))
 
-        name=settings.get('BOT_NAME')
-        print(f'name is {name}')
+        # name=settings.get('BOT_NAME')
+        # print(f'name is {name}')
         host=settings.get('REDIS_HOST','127.0.0.1')
-        port=settings.get('REDIS_PORT')
-        print(f'port {port}')
+        port=settings.get('REDIS_PORT',6379)
+        
+        print(f'host:{host},port {port}')
         db=settings.get('REDIS_DB',0)
-        print('litters')
-        # print(settings.redis_port)
         redis_key=settings.get('REDIS_KEY')
-        print('get key')
-        print(redis_key)
-        print('get host')
-        print(host)
+        print(f'redis key{redis_key}')
         user=settings.get('USER_AGENT')
         print(user)
         if redis_key is None:
@@ -41,6 +37,7 @@ class DupeFilter(BaseDupeFilter):
             return True
 
         else:
+            print('add an url in redis')
             self.r.sadd(self.key,request.url)
 
             return False

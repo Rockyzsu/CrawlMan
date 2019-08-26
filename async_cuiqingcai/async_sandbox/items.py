@@ -13,7 +13,7 @@ class AsyncSandboxItem(scrapy.Item):
     # name = scrapy.Field()
     title = scrapy.Field()
     article_url = scrapy.Field()
-    content = scrapy.Field()
+    # content = scrapy.Field()
     created_at = scrapy.Field()
     category = scrapy.Field()
     visited = scrapy.Field()
