@@ -9,6 +9,8 @@ from async_sandbox.items import AsyncSandboxItem
 import redis
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy import Request, signals
+from scrapy.http.cookies import CookieJar
+
 
 class ExampleSpider(scrapy.Spider):
     name = 'example'
@@ -26,6 +28,12 @@ class ExampleSpider(scrapy.Spider):
         )
 
     def parse(self, response):
+        cookie_obj = CookieJar()
+        cookie_obj.extract_cookies(response,response.request)
+        print(cookie_obj)
+        print(dir(cookie_obj))
+        print(cookie_obj._cookies)
+        # print(response)
         page = response.meta['page']
         next_page = page + 1
 
