@@ -209,3 +209,5 @@ class RedisSubcribe(scrapy.Spider):
 
         print('idle status , try go to visit')
         raise DontCloseSpider("Stayin' alive")
+
+

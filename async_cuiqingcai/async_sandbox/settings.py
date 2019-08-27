@@ -13,15 +13,22 @@ BOT_NAME = 'async_sandbox'
 
 SPIDER_MODULES = ['async_sandbox.spiders']
 NEWSPIDER_MODULE = 'async_sandbox.spiders'
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = '10.18.6.46'
 REDIS_PORT=6379
 REDIS_DB=0
-REDIS_KEY = 'cuiqingcai_xx'
+REDIS_KEY = 'cuiqingcai'
+REDIS_REST = True
 
-MONGO_HOST='127.0.0.1'
+MONGO_HOST='10.18.6.46'
 MONGO_PORT=27001
 MONGO_DB='spider'
 MONGO_DOC='cuiqincai'
+
+MQ_HOST='192.168.1.101'
+MQ_PORT=5672
+MQ_USER='admin'
+MQ_PASSWORD='admin'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
 # Obey robots.txt rules
@@ -30,7 +37,7 @@ ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
 
-# LOG_LEVEL='INFO'
+LOG_LEVEL='INFO'
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
@@ -72,14 +79,15 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
-   'scrapy.extensions.telnet.TelnetConsole': 200,
+   # 'scrapy.extensions.telnet.TelnetConsole': 200,
+   'async_sandbox.CustomExtension.AdvancedExtension':200
 }
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'async_sandbox.pipelines.AsyncSQLPipeline': None,
-   'async_sandbox.pipelines.JSONPipeline': 200,
+   'async_sandbox.pipelines.JSONPipeline': None,
    'async_sandbox.pipelines.MongoPipeline': 300
 }
 
@@ -103,6 +111,7 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-LOG_LEVEL = 'INFO'
 
 DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
+
+MQ_QUEUE_NAME='spider'
