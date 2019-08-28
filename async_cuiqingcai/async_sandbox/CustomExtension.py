@@ -10,6 +10,7 @@ import json
 import datetime
 from scrapy.exceptions import NotConfigured
 
+# 自定义扩展 推送到 rabbitmq
 class AdvancedExtension(object):
     
     def __init__(self,crawler):

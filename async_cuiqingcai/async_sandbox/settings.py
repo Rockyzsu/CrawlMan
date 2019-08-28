@@ -41,7 +41,7 @@ LOG_LEVEL='INFO'
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 0.1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -72,9 +72,10 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'async_sandbox.middlewares.AsyncSandboxDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   # 'async_sandbox.monitor.statscol.StatcollectorMiddleware': 200, # 收集信号的中间件
+   'async_sandbox.CustomMiddleware.CustomMiddleware':200
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -88,7 +89,8 @@ EXTENSIONS = {
 ITEM_PIPELINES = {
    'async_sandbox.pipelines.AsyncSQLPipeline': None,
    'async_sandbox.pipelines.JSONPipeline': None,
-   'async_sandbox.pipelines.MongoPipeline': 300
+   'async_sandbox.pipelines.MongoPipeline': 300,
+   # 'async_sandbox.monitor.statscol.SpiderRunStatspipeline': 301 # 收集信号的中间件
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -115,3 +117,13 @@ ITEM_PIPELINES = {
 DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
 
 MQ_QUEUE_NAME='spider'
+
+# 是否启用缓存策略
+# HTTPCACHE_ENABLED = True
+
+# # 缓存策略：所有请求均缓存，下次在请求直接访问原来的缓存即可
+# HTTPCACHE_POLICY = "scrapy.extensions.httpcache.DummyPolicy"
+# HTTPCACHE_DIR = 'httpcache'
+
+STATS_KEYS = ['downloader/request_count', 'downloader/response_count','downloader/response_status_count/200', 'item_scraped_count']
+
