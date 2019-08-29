@@ -6,7 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import logging
 
 class AsyncSandboxSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -23,7 +23,8 @@ class AsyncSandboxSpiderMiddleware(object):
     def process_spider_input(self, response, spider):
         # Called for each response that goes through the spider
         # middleware and into the spider.
-
+        logging.info('in process_spider_input')
+        logging.info(f'headers ============== {response.headers}')
         # Should return None or raise an exception.
         return None
 
@@ -32,7 +33,11 @@ class AsyncSandboxSpiderMiddleware(object):
         # it has processed the response.
 
         # Must return an iterable of Request, dict or Item objects.
+
+        
         for i in result:
+            logging.info('in process_spider_output')
+            logging.info(i)
             yield i
 
     def process_spider_exception(self, response, exception, spider):

@@ -34,7 +34,7 @@ class AdvancedExtension(object):
         
         print('in extension module, spider close')
         print(f'spider name {spider.name}')
-        print(dir(spider))
+        # print(dir(spider))
         credentials = pika.PlainCredentials(self.mq_user,self.mq_password)
 
         connection = pika.BlockingConnection(pika.ConnectionParameters(self.mq_host,self.mq_port,'/',credentials))

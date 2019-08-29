@@ -30,7 +30,7 @@ MQ_USER='admin'
 MQ_PASSWORD='admin'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
+USER_AGENT = 'Fuck Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
@@ -66,15 +66,18 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'async_sandbox.middlewares.AsyncSandboxSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+   'async_sandbox.middlewares.AsyncSandboxSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # 'async_sandbox.monitor.statscol.StatcollectorMiddleware': 200, # 收集信号的中间件
-   'async_sandbox.CustomMiddleware.CustomMiddleware':200
+   'async_sandbox.CustomMiddleware.CustomMiddleware':200,
+   'async_sandbox.CustomMiddleware.CustomMiddleware2':201,
+   'async_sandbox.CustomMiddleware.ModifiedUserAgentMiddleware':202
+
 }
 
 # Enable or disable extensions
@@ -89,7 +92,7 @@ EXTENSIONS = {
 ITEM_PIPELINES = {
    'async_sandbox.pipelines.AsyncSQLPipeline': None,
    'async_sandbox.pipelines.JSONPipeline': None,
-   'async_sandbox.pipelines.MongoPipeline': 300,
+   'async_sandbox.pipelines.MongoPipeline': None,
    # 'async_sandbox.monitor.statscol.SpiderRunStatspipeline': 301 # 收集信号的中间件
 }
 

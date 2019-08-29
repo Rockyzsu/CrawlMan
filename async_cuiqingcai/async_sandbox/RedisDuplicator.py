@@ -41,11 +41,12 @@ class DupeFilter(BaseDupeFilter):
     def request_seen(self, request):
 
         if self.r.sismember(self.key,request.url):
-            print(f'url ---{request.url}---has been seen')
+            print(f'url ---{request.url}---has been seen 重复URL')
+
             return True
 
         else:
-            print('add an url in redis')
+            # print('add an url in redis')
             self.r.sadd(self.key,request.url)
 
             return False

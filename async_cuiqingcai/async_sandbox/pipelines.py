@@ -56,11 +56,12 @@ class MongoPipeline(object):
 
     def process_item(self,item,spider):
         print('in mongopipeline')
+        
         if item is None:
             print('item is None')
         else:
             print('item is not None')
-        # print(f'receive item -> len is {len(item)}')
+        print(f'receive item -> len is {len(item)}')
         # self.doc.insert(dict(item))
         return item
 
