@@ -1,9 +1,0 @@
-Server: nginx/1.10.3 (Ubuntu)
-Date: Tue, 27 Aug 2019 10:58:07 GMT
-Content-Type: text/html; charset=UTF-8
-Pragma: no-cache
-Vary: Cookie
-Expires: Wed, 11 Jan 1984 05:00:00 GMT
-Cache-Control: no-cache, must-revalidate, max-age=0
-Link: <https://cuiqingcai.com/wp-json/>; rel="https://api.w.org/"
-Content-Encoding: gzip

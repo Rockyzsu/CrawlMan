@@ -66,12 +66,15 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+# 爬虫中间件
 SPIDER_MIDDLEWARES = {
    'async_sandbox.middlewares.AsyncSandboxSpiderMiddleware': 543,
 }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
+
+# 下载中间件
 DOWNLOADER_MIDDLEWARES = {
    # 'async_sandbox.monitor.statscol.StatcollectorMiddleware': 200, # 收集信号的中间件
    'async_sandbox.CustomMiddleware.CustomMiddleware':200,
@@ -89,6 +92,8 @@ EXTENSIONS = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+
+# pipeline中间件
 ITEM_PIPELINES = {
    'async_sandbox.pipelines.AsyncSQLPipeline': None,
    'async_sandbox.pipelines.JSONPipeline': None,
@@ -117,8 +122,10 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# 去重器
 DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
 
+# rabbitmq 队列名字
 MQ_QUEUE_NAME='spider'
 
 # 是否启用缓存策略
