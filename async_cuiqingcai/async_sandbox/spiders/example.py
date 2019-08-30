@@ -10,7 +10,7 @@ import redis
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy import Request, signals
 from scrapy.http.cookies import CookieJar
-
+from scrapy.conf import settings
 
 class ExampleSpider(scrapy.Spider):
     name = 'example'
@@ -91,7 +91,7 @@ class ExampleSpider(scrapy.Spider):
         item['crawltime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         yield item
 
-class RedisSubcribe(scrapy.Spider):
+# class RedisSubcribe(scrapy.Spider):
 
     name = 'cuiqincai_chn'
 
@@ -102,7 +102,7 @@ class RedisSubcribe(scrapy.Spider):
 
         # initial redis subscriber
         # pool = redis.ConnectionPool()
-        self.conn = redis.Redis(host='10.18.6.46',decode_responses=True)
+        self.conn = redis.Redis(host='127.0.0.1',decode_responses=True)
         self.subscribe_channel='cuiqingcai'
         self.pub = self.conn.pubsub()
         self.pub.subscribe(self.subscribe_channel)
@@ -229,16 +229,16 @@ class RabbitMQSpider(scrapy.Spider):
             )
 
     def parse(self,response):
-
+        print(response.text)
 
     def __init__(self,*args,**kwargs):
-        super(RabbitMQSpider,self).__in
+        super(RabbitMQSpider,self).__init__(*args,**kwargs)
 
-        credentials = pika.PlainCredentials('guest','guest')
+        credentials = pika.PlainCredentials(settings['MQ_USER'],settings['MQ_PASSWORD'])
 
-        connection = pika.BlockingConnection(pika.ConnectionParameters('10.18.6.46',5672,'/',credentials))
+        connection = pika.BlockingConnection(pika.ConnectionParameters(settings['MQ_HOST'],settings['MQ_PORT'],'/',credentials))
 
-        queue_name='spider'
+        queue_name=settings['MQ_QUEUE_NAME']
 
         self.channel = connection.channel()
         self.channel.queue_declare(queue=queue_name, durable=True)

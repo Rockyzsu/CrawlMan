@@ -13,7 +13,7 @@ BOT_NAME = 'async_sandbox'
 
 SPIDER_MODULES = ['async_sandbox.spiders']
 NEWSPIDER_MODULE = 'async_sandbox.spiders'
-REDIS_HOST = '10.18.6.46'
+REDIS_HOST = '127.0.0.1'
 REDIS_PORT=6379
 REDIS_DB=0
 REDIS_KEY = 'cuiqingcai'
@@ -24,10 +24,10 @@ MONGO_PORT=27001
 MONGO_DB='spider'
 MONGO_DOC='cuiqincai'
 
-MQ_HOST='192.168.1.101'
+MQ_HOST='127.0.0.1'
 MQ_PORT=5672
-MQ_USER='admin'
-MQ_PASSWORD='admin'
+MQ_USER='guest'
+MQ_PASSWORD='guest'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Fuck Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
@@ -137,3 +137,4 @@ MQ_QUEUE_NAME='spider'
 
 STATS_KEYS = ['downloader/request_count', 'downloader/response_count','downloader/response_status_count/200', 'item_scraped_count']
 
+COMMANDS_MODULE = 'async_sandbox.commands'
