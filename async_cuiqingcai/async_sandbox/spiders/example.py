@@ -219,6 +219,7 @@ class RedisSubcribe(scrapy.Spider):
         print('idle status , try go to visit')
         raise DontCloseSpider("Stayin' alive")
 
+# 无法正常执行，rabbitmq阻塞
 class RabbitMQSpider(scrapy.Spider):
     name = 'cuiqingcai'
     BASE_URL = 'https://cuiqingcai.com/category/technique/page/{}'
@@ -271,7 +272,7 @@ class RabbitMQSpider(scrapy.Spider):
         page = js_content.get('page')
         logging.info(f'got the page {page}')
         # logging.info(page)
-        yield Request(url=self.BASE_URL.format(page),callback=self.parse_item)
+        return Request(url=self.BASE_URL.format(page),callback=self.parse_item)
 
 
     def parse_item(self,response):
@@ -287,7 +288,7 @@ class RabbitMQSpider(scrapy.Spider):
             item['category'] = category
             item['article_url'] = article_url
 
-            yield Request(
+            return Request(
                 url=article_url,
                 callback=self.parse_detail,
                 meta={'item': item}
@@ -318,4 +319,62 @@ class RabbitMQSpider(scrapy.Spider):
         item['comment'] = comment
         item['liked'] = liked
         item['crawltime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        yield item
+        return item
+
+class OldRabbitMQSpider(scrapy.Spider):
+    
+    name = "old_rabbit"
+
+    def start_requests(self):
+        headers = {'Accept': '*/*',
+                   'Accept-Encoding': 'gzip, deflate, br',
+                   'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+                   'Host': '36kr.com',
+                   'Referer': 'https://36kr.com/information/web_news',
+                   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
+                   }
+
+        url = 'https://36kr.com/information/web_news'
+        
+
+        yield Request(url=url,
+                      headers=headers)
+
+    def parse(self, response):
+       
+
+        credentials = pika.PlainCredentials('admin', 'admin')
+        connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.1.101', 5672, '/', credentials))
+
+        channel = connection.channel()
+        channel.exchange_declare(exchange='direct_log', exchange_type='direct')
+
+        result = channel.queue_declare(exclusive=True, queue='')
+
+        queue_name = result.method.queue
+
+        # print(queue_name)
+        # infos = sys.argv[1:] if len(sys.argv)>1 else ['info']
+        info = 'info'
+
+        # 绑定多个值
+
+        channel.queue_bind(
+            exchange='direct_log',
+            routing_key=info,
+            queue=queue_name
+        )
+        print('start to receive [{}]'.format(info))
+
+        channel.basic_consume(
+            on_message_callback=self.callback_func,
+            queue=queue_name,
+            auto_ack=True,
+        )
+
+        channel.start_consuming()
+
+
+    def callback_func(self, ch, method, properties, body):
+        print(body)
+        return None
