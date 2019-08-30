@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import re
-
+import pika
 import scrapy
 from scrapy import Request
 import logging
@@ -10,7 +10,8 @@ import redis
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy import Request, signals
 from scrapy.http.cookies import CookieJar
-
+from scrapy.utils.project import get_project_settings
+import json
 
 class ExampleSpider(scrapy.Spider):
     name = 'example'
@@ -219,30 +220,29 @@ class RedisSubcribe(scrapy.Spider):
         raise DontCloseSpider("Stayin' alive")
 
 class RabbitMQSpider(scrapy.Spider):
-    name = 'cuiqincai'
+    name = 'cuiqingcai'
     BASE_URL = 'https://cuiqingcai.com/category/technique/page/{}'
 
-    def start_requests(self):
-        home = 'https://cuiqingcai.com/'
-        yield Request(
-                url=home
-            )
-
-    def parse(self,response):
-
-
     def __init__(self,*args,**kwargs):
-        super(RabbitMQSpider,self).__in
 
-        credentials = pika.PlainCredentials('guest','guest')
+        super(RabbitMQSpider,self).__init__(*args,**kwargs)
+        settings = get_project_settings()
 
-        connection = pika.BlockingConnection(pika.ConnectionParameters('10.18.6.46',5672,'/',credentials))
+        self.mquser = settings['MQ_USER']
+        self.mqpasswrod = settings['MQ_PASSWORD']
+        self.mqhost = settings['MQ_HOST']
+        self.mqpport = settings['MQ_PORT']
+        self.mqqueue = settings['MQ_QUEUE_NAME']
 
-        queue_name='spider'
+        credentials = pika.PlainCredentials(self.mquser,self.mqpasswrod)
 
+        connection = pika.BlockingConnection(pika.ConnectionParameters(self.mqhost,self.mqpport,'/',credentials))
+
+        queue_name=self.mqqueue
+        logging.info('queue name {}'.format(queue_name))
+        
         self.channel = connection.channel()
         self.channel.queue_declare(queue=queue_name, durable=True)
-
 
         self.channel.basic_consume(
             on_message_callback=self.callback,
@@ -250,18 +250,72 @@ class RabbitMQSpider(scrapy.Spider):
             auto_ack=True,
             )
 
+    def start_requests(self):
 
-    def send_mail(self):
-        pass
+        home = 'https://cuiqingcai.com/'
+        yield Request(
+                url=home
+            )
+
+    def parse(self,response):
+        logging.info('[*] waiting for the message, to exit press Ctrl+C')
+        
+        self.channel.start_consuming()
+        logging.info('comsumed')
+
 
     def callback(self,ch,method,properties,body):
         content = str(body,encoding='utf8')
-        print('[x] received body {}'.format(content))
+        logging.info('[x] received body {}'.format(content))
         js_content = json.loads(content)
-        self.send_mail()
+        page = js_content.get('page')
+        logging.info(f'got the page {page}')
+        # logging.info(page)
+        yield Request(url=self.BASE_URL.format(page),callback=self.parse_item)
 
 
-    def start(self):
-        print('[*] waiting for the message, to exit press Ctrl+C')
+    def parse_item(self,response):
+        logging.info('in parse_item')
 
-        self.channel.start_consuming()
+        articles = response.xpath('//article[@class="excerpt"]')
+        for article in articles:
+            item = AsyncSandboxItem()
+            category = article.xpath('./header/a[1]/text()').extract_first()
+            title = article.xpath('./header/h2/a[1]/text()').extract_first()
+            article_url = article.xpath('./header/h2/a[1]/@href').extract_first()
+            item['title'] = title
+            item['category'] = category
+            item['article_url'] = article_url
+
+            yield Request(
+                url=article_url,
+                callback=self.parse_detail,
+                meta={'item': item}
+            )
+
+
+    def parse_detail(self, response):
+
+        logging.info('in response parse_item')
+        item = response.meta['item']
+        author = response.xpath(
+            '//header[@class="article-header"]//i[@class="fa fa-user"]/following::*[1]/text()').extract_first()
+        visited = response.xpath(
+            '//header[@class="article-header"]//i[@class="fa fa-eye"]/parent::*[1]/text()').extract_first()
+        comment = response.xpath(
+            '//header[@class="article-header"]//i[@class="fa fa-comments-o"]/following-sibling::*[1]/text()').extract_first()
+        liked = response.xpath('//span[@class="count"]/text()').extract_first()
+        created_at = response.xpath(
+            '//header[@class="article-header"]//i[@class="fa fa-clock-o"]/parent::*[1]/text()').extract_first()
+        content = response.xpath('//article[@class="article-content"]')[0].xpath('string(.)').extract()[0]
+
+        item['author'] = author
+        item['created_at'] = created_at
+        # item['content'] = content
+        visited=re.sub('浏览','',visited)
+        item['visited'] = visited
+        comment=re.sub('评论','',comment)
+        item['comment'] = comment
+        item['liked'] = liked
+        item['crawltime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        yield item

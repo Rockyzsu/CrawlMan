@@ -28,6 +28,8 @@ MQ_HOST='192.168.1.101'
 MQ_PORT=5672
 MQ_USER='admin'
 MQ_PASSWORD='admin'
+MQ_QUEUE_NAME='cuiqingcai'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Fuck Mozilla/zzzzzz.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
@@ -37,7 +39,7 @@ ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
 
-LOG_LEVEL='INFO'
+# LOG_LEVEL='INFO'
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
@@ -68,7 +70,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 # 爬虫中间件
 SPIDER_MIDDLEWARES = {
-   'async_sandbox.middlewares.AsyncSandboxSpiderMiddleware': 543,
+   # 'async_sandbox.middlewares.AsyncSandboxSpiderMiddleware': 543,
 }
 
 # Enable or disable downloader middlewares
@@ -77,9 +79,9 @@ SPIDER_MIDDLEWARES = {
 # 下载中间件
 DOWNLOADER_MIDDLEWARES = {
    # 'async_sandbox.monitor.statscol.StatcollectorMiddleware': 200, # 收集信号的中间件
-   'async_sandbox.CustomMiddleware.CustomMiddleware':200,
-   'async_sandbox.CustomMiddleware.CustomMiddleware2':201,
-   'async_sandbox.CustomMiddleware.ModifiedUserAgentMiddleware':202
+   # 'async_sandbox.CustomMiddleware.CustomMiddleware':200,
+   # 'async_sandbox.CustomMiddleware.CustomMiddleware2':201,
+   # 'async_sandbox.CustomMiddleware.ModifiedUserAgentMiddleware':202
 
 }
 
@@ -87,7 +89,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
    # 'scrapy.extensions.telnet.TelnetConsole': 200,
-   'async_sandbox.CustomExtension.AdvancedExtension':200
+   # 'async_sandbox.CustomExtension.AdvancedExtension':200
 }
 
 # Configure item pipelines
@@ -95,7 +97,7 @@ EXTENSIONS = {
 
 # pipeline中间件
 ITEM_PIPELINES = {
-   'async_sandbox.pipelines.AsyncSQLPipeline': None,
+   'async_sandbox.pipelines.AsyncSQLPipeline': 200,
    'async_sandbox.pipelines.JSONPipeline': None,
    'async_sandbox.pipelines.MongoPipeline': None,
    # 'async_sandbox.monitor.statscol.SpiderRunStatspipeline': 301 # 收集信号的中间件
@@ -123,10 +125,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # 去重器
-DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
+# DUPEFILTER_CLASS='async_sandbox.RedisDuplicator.DupeFilter'
 
 # rabbitmq 队列名字
-MQ_QUEUE_NAME='spider'
 
 # 是否启用缓存策略
 # HTTPCACHE_ENABLED = True
