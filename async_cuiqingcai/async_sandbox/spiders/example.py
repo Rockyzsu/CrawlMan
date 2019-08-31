@@ -92,7 +92,7 @@ class ExampleSpider(scrapy.Spider):
         item['crawltime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         yield item
 
-# class RedisSubcribe(scrapy.Spider):
+class RedisSubcribe(scrapy.Spider):
 
     name = 'cuiqincai_chn'
 
