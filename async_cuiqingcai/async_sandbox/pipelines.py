@@ -7,9 +7,12 @@
 import pymysql
 from twisted.enterprise import adbapi
 import logging
+import pymongo
+from scrapy.exceptions import DropItem
+
 class AsyncSQLPipeline(object):
     def __init__(self):
-        self.dbpool = adbapi.ConnectionPool('pymysql',host='192.168.1.100',port=3306,user='root',password='123456',db='spider_test')
+        self.dbpool = adbapi.ConnectionPool('pymysql',host='192.168.1.100',port=3306,user='root',password='123456z',db='spider_test')
         # self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
@@ -29,3 +32,68 @@ class AsyncSQLPipeline(object):
         logging.error(failure)
         logging.error('error item')
         logging.error(item)
+
+class MongoPipeline(object):
+
+    def __init__(self,host,port,db,doc):
+        client = pymongo.MongoClient(host,port)
+        self.doc=client[db][doc]
+
+    @classmethod
+    def from_crawler(cls,crawler):
+        print('in from crawler')
+        host = crawler.settings.get('MONGO_HOST')
+        port = crawler.settings.getint('MONGO_PORT')
+        db = crawler.settings.get('MONGO_DB')
+        doc = crawler.settings.get('MONGO_DOC')
+
+
+        print(f'host {host}')
+        return cls(host,port,db,doc)
+
+    def open_spider(self,spider):
+        print('spider open')
+
+    def process_item(self,item,spider):
+        print('in mongopipeline')
+        
+        if item is None:
+            print('item is None')
+        else:
+            print('item is not None')
+        print(f'receive item -> len is {len(item)}')
+        # self.doc.insert(dict(item))
+        return item
+
+    def close_spider(self,spider):
+        print('closing in pipeline')
+
+class JSONPipeline(object):
+
+    def __init__(self,host,port,db,doc):
+        pass
+
+    @classmethod
+    def from_crawler(cls,crawler):
+        print('in from crawler')
+        host = crawler.settings.get('MONGO_HOST')
+        port = crawler.settings.getint('MONGO_PORT')
+        db = crawler.settings.get('MONGO_DB')
+        doc = crawler.settings.get('MONGO_DOC')
+        
+
+        print(f'host {host}')
+        return cls(host,port,db,doc)
+
+    def open_spider(self,spider):
+        print('spider open')
+
+    def process_item(self,item,spider):
+        print('in JSON pipeline')
+        print(f'receive item -> len is {len(item)}')
+
+        # return item
+        raise DropItem(item)
+
+    def close_spider(self,spider):
+        print('closing in pipeline')

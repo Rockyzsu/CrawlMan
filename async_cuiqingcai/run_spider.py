@@ -1,3 +1,3 @@
 from scrapy import cmdline
-name = 'cuiqincai_chn'
-cmdline.execute('scrapy crawl {}'.format(name).split())
+name = 'example'
+cmdline.execute('scrapy crawl {} -s LOG_FILE=scrapy.log'.format(name).split())
