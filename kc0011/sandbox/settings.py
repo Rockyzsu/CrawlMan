@@ -21,7 +21,7 @@ USER_AGENT = 'Mozilla/5.0 (Linux; Android 8.0.0; STF-AL10 Build/HUAWEISTF-AL10; 
 ROBOTSTXT_OBEY = False
 LOG_LEVEL = 'INFO'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -38,10 +38,17 @@ LOG_LEVEL = 'INFO'
 # TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-# DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-# }
+DEFAULT_REQUEST_HEADERS = {
+'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+'Accept-Encoding': 'gzip, deflate',
+'Accept-Language': 'en-US,en;q=0.9',
+'Cache-Control': 'no-cache',
+'Cookie': 'DvForum=StatUserID=32796493; ASPSESSIONIDAQCAATTC=NMDCBFFABBOKOBMBCFLNMEBM; ASPSESSIONIDCQCDCRQC=OBLGIGAAFANKJEEHNLLFBFJD',
+'Host': 'www.kc0011.net',
+'Pragma': 'no-cache',
+'Proxy-Connection': 'keep-alive',
+'Upgrade-Insecure-Requests': '1'
+}
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
@@ -66,7 +73,7 @@ LOG_LEVEL = 'INFO'
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # 'sandbox.pipelines.SQLPipeline': 300,
-    'sandbox.pipelines.MongoPipeline': None,
+    'sandbox.pipelines.MongoPipeline': 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -105,7 +112,9 @@ ITEM_PIPELINES = {
 # SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
 # SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
-MONGO_HOST = '192.168.10.48'
-MONGO_PORT = 17001
+MONGO_HOST = '127.0.0.1'
+MONGO_PORT = 27017
 MONGODB_DB = 'spider'
-MONGODB_DOC = 'KC0011'
+MONGODB_DOC = 'KC0011_user'
+MONGODB_DOC2 = 'KC0011_content'
+REDIS_HOST='127.0.0.1'

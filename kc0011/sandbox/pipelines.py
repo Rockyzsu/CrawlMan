@@ -7,17 +7,21 @@
 # from sandbox.models import SpiderModels, DBSession
 import logging
 import pymongo
-from sandbox import config
 from sandbox import settings
-
+from sandbox.items import SpiderItem
 
 class MongoPipeline(object):
     def __init__(self):
         self.db = pymongo.MongoClient(settings.MONGO_HOST, port=settings.MONGO_PORT)
-        self.doc = self.db[settings.DB][settings.DOCUMENT]
+        self.doc1 = self.db[settings.MONGODB_DB][settings.MONGODB_DOC]
+        self.doc2 = self.db[settings.MONGODB_DB][settings.MONGODB_DOC2]
+        self.doc2.ensure_index('url',unique=True)
 
     def process_item(self, item, spider):
-        insert_item = dict(item)
-        self.doc.insert(insert_item)
-
+        if isinstance(item,SpiderItem):
+            insert_item = dict(item)
+            self.doc1.insert(insert_item)
+        else:
+            insert_item = dict(item)
+            self.doc2.insert(insert_item)
         return item

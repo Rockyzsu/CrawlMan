@@ -11,13 +11,22 @@ import scrapy
 class SpiderItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title = scrapy.Field()
-    article_url = scrapy.Field()
-    # content = scrapy.Field()
-    created_at = scrapy.Field()
-    category = scrapy.Field()
-    visited = scrapy.Field()
-    comment = scrapy.Field()
-    liked = scrapy.Field()
-    author = scrapy.Field()
+    nick_name = scrapy.Field()
+    level = scrapy.Field()
+    credit = scrapy.Field()
+    score_count = scrapy.Field()
+    tie_count = scrapy.Field()
+    jifeng = scrapy.Field()
+    register = scrapy.Field()
+    alipay=scrapy.Field()
+    email=scrapy.Field()
+    person_info_html = scrapy.Field()
     crawltime = scrapy.Field()
+
+class ContentItem(Item):
+    url = scrapy.Field()
+    publishTime = scrapy.Field()
+    author = scrapy.Field()
+    content = scrapy.Field()
+    crawltime=scrapy.Field()
+
