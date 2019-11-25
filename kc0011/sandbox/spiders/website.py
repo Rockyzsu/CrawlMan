@@ -72,7 +72,7 @@ class GeneralSpider(scrapy.Spider):
         current_page = response.meta['current']
         main_content = response.xpath('//div[@class="postlary1"][1]/div[@class="post"]/div[3]').xpath(
             'string(.)').extract_first()
-        publishTime = response.xpath('//div[@class="postlary1"][1]/div[@class="postuserinfo"]//text()').extract_first()
+        publishTime = response.xpath('//div[@class="postbottom1"]/div[@class="postuserinfo"]/text()').extract_first()
 
         author = response.xpath(
             '//div[@class="postlary1"][1]/div[@class="postuserinfo"]/div[1]/div/font/b/text()').extract_first()
@@ -92,10 +92,11 @@ class GeneralSpider(scrapy.Spider):
             alipay = node.xpath('./div[@class="post"]/div[1]/a[1]/@href').extract_first()
             email = node.xpath('./div[@class="post"]/div[1]/a[2]/@href').extract_first()
 
-            if self.r.sismember(self.key, nick_name):
+            if nick_name is None or self.r.sismember(self.key, nick_name):
                 continue
             else:
                 self.r.sadd(self.key, nick_name)
+
             level = node.xpath('./div[@class="postuserinfo"]/div[4]/text()').extract_first()
             credit = node.xpath('./div[@class="postuserinfo"]/div[5]/text()').extract_first()
             score_count = node.xpath('./div[@class="postuserinfo"]/div[6]/text()').extract_first()
@@ -159,6 +160,7 @@ class GeneralSpider(scrapy.Spider):
 
         total_page = response.xpath('//td[@class="tabletitle1"][3]').extract_first()
         pages = int(re.search('1/(\d+)页', total_page).group(1))
+
         if pages > 1 and current_page < pages:
             next_url = re.sub('page=\d+', 'page={}'.format(current_page + 1), response.url)
             yield Request(

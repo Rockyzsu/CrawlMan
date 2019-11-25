@@ -21,7 +21,7 @@ USER_AGENT = 'Mozilla/5.0 (Linux; Android 8.0.0; STF-AL10 Build/HUAWEISTF-AL10; 
 ROBOTSTXT_OBEY = False
 LOG_LEVEL = 'INFO'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 2
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -112,9 +112,9 @@ ITEM_PIPELINES = {
 # SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
 # SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
-MONGO_HOST = '127.0.0.1'
-MONGO_PORT = 27017
+MONGO_HOST = '192.168.10.48'
+MONGO_PORT = 17001
 MONGODB_DB = 'spider'
 MONGODB_DOC = 'KC0011_user'
 MONGODB_DOC2 = 'KC0011_content'
-REDIS_HOST='127.0.0.1'
+REDIS_HOST='192.168.10.48'
