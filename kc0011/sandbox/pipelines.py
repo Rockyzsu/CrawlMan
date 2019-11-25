@@ -15,13 +15,20 @@ class MongoPipeline(object):
         self.db = pymongo.MongoClient(settings.MONGO_HOST, port=settings.MONGO_PORT)
         self.doc1 = self.db[settings.MONGODB_DB][settings.MONGODB_DOC]
         self.doc2 = self.db[settings.MONGODB_DB][settings.MONGODB_DOC2]
-        self.doc2.ensure_index('url',unique=True)
+        try:
+            self.doc2.ensure_index('url',unique=True)
+        except Exception as e:
+            print(e)
 
     def process_item(self, item, spider):
         if isinstance(item,SpiderItem):
+
             insert_item = dict(item)
             self.doc1.insert(insert_item)
+
         else:
+
             insert_item = dict(item)
             self.doc2.insert(insert_item)
+
         return item

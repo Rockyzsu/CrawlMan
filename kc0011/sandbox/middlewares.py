@@ -4,11 +4,12 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import random
+
 import requests
 from scrapy import signals
 import redis
 from sandbox import config
-from sandbox.random_ua import random_useragent
 
 
 class SandboxSpiderMiddleware(object):
@@ -107,31 +108,13 @@ class SandboxDownloaderMiddleware(object):
 
 
 class ProxyMiddleware(object):
+    def __init__(self):
+        self.proxy_list = config.PROXY_LIST
 
     def process_request(self, request, spider):
-        proxy = self.get_proxy()
-        request.meta['proxy'] = proxy
 
-    def get_proxy(self, retry=50):
-
-        proxyurl = 'http://{}:8081/dynamicIp/common/getDynamicIp.do'.format(config.proxyip)
-        for i in range(1, retry + 1):
-            try:
-                r = requests.get(proxyurl, timeout=10)
-            except Exception as e:
-                print(e)
-                print('获取代理ip失败, 重试 >>>> ' + str(i))
-
-            else:
-                js = r.json()
-                proxyServer = 'http://{0}:{1}'.format(js.get('ip'), js.get('port'))
-                return proxyServer
-
-        return None
+        proxy = random.choice(self.proxy_list)
+        proxy_str = f'http://{proxy}'
+        request.meta['proxy'] = proxy_str
 
 
-class RandomUserAgent(object):
-
-    def process_request(self, request, spider):
-        headers = random_useragent()
-        request.headers['User-Agent'] = headers

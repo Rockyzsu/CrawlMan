@@ -129,7 +129,7 @@ class GeneralSpider(scrapy.Spider):
                 alipay = node.xpath('./div[@class="post"]/div[1]/a[1]/@href').extract_first()
                 email = node.xpath('./div[@class="post"]/div[1]/a[2]/@href').extract_first()
 
-                if self.r.sismember(self.key, nick_name):
+                if nick_name is None or self.r.sismember(self.key, nick_name):
                     continue
                 else:
                     self.r.sadd(self.key, nick_name)
