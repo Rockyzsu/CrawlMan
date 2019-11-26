@@ -2,6 +2,8 @@
 import datetime
 import json
 import re
+
+import pymongo
 import scrapy
 from scrapy import Request, FormRequest
 import logging
@@ -20,6 +22,11 @@ class GeneralSpider(scrapy.Spider):
     r = redis.StrictRedis(settings.REDIS_HOST, decode_responses=True)
 
     key = 'kc0011'
+
+    re_pattern = re.compile('&page=\d+')
+
+    client = pymongo.MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
+    doc = client['spider']['KC0011_content']
 
     def start_requests(self):
 
@@ -46,8 +53,10 @@ class GeneralSpider(scrapy.Spider):
             return
 
         print(page)
+
         chunk = '&action=&topicmode=0&page={}'
         total_page = int(re.search('/(\d+)页', page).group(1))
+
         for i in range(1, total_page + 1):
             yield Request(
                 url=sub_url + chunk.format(i),
@@ -57,12 +66,20 @@ class GeneralSpider(scrapy.Spider):
     def page_list(self, response):
 
         nodes = response.xpath('//div[@class="list"]/div[@class="listtitle"]')
+
         for node in nodes:
-            # print(node)
             link = node.xpath('./a/@href').extract_first()
             full_url = response.urljoin(link)
+
+            # url = response.url
+
+            url = re.sub(self.re_pattern, '', full_url)
+
+            if self.doc.find_one({'url':url}):
+                continue
+
             yield Request(
-                url=full_url,
+                url=url,
                 callback=self.parse_detail,
                 meta={'current': 1}
             )
@@ -79,7 +96,11 @@ class GeneralSpider(scrapy.Spider):
 
         content_item = ContentItem()
 
-        content_item['url'] = response.url
+        url=response.url
+
+        url=re.sub(self.re_pattern,'',url)
+
+        content_item['url'] = url
         content_item['publishTime'] = publishTime
         content_item['content'] = main_content
         content_item['author'] = author
@@ -87,6 +108,7 @@ class GeneralSpider(scrapy.Spider):
         yield content_item
 
         nodes1 = response.xpath('//div[@class="postlary1"]')
+
         for node in nodes1:
             nick_name = node.xpath('./div[@class="postuserinfo"]/div[1]/div/font/b/text()').extract_first()
             alipay = node.xpath('./div[@class="post"]/div[1]/a[1]/@href').extract_first()
