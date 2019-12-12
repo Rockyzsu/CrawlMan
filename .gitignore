@@ -32,3 +32,8 @@ config.py
 setting.py
 setttings.py
 *.ts
+kc0011/jobs/requests.queue/p1
+kc0011/jobs/requests.queue/p0
+kc0011/jobs/requests.queue/active.json
+kc0011/jobs/spider.state
+kc0011/jobs/requests.seen

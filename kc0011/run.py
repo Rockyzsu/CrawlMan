@@ -5,5 +5,5 @@
 
 from scrapy import cmdline
 name = 'spider'
-cmd = 'scrapy crawl {}'.format(name)
+cmd = 'scrapy crawl {} -s JOBDIR=jobs'.format(name)
 cmdline.execute(cmd.split())
