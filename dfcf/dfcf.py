@@ -8,73 +8,34 @@ import time
 import requests
 from scrapy.selector import Selector
 import pymongo
-db=pymongo.MongoClient('192.168.10.48',port=17001)
-doc=db['db_stock']['dfcf_list_2']
-
-cookies = {
-    'qgqp_b_id': '4d112e2089d3c5855c8ca2d1f2947ecd',
-    'em_hq_fls': 'js',
-    'HAList': 'f-0-399300-%u6CAA%u6DF1300',
-    'st_si': '98016728708487',
-    'st_asi': 'delete',
-    'st_pvi': '04745525503534',
-    'st_sp': '2019-10-28%2011%3A48%3A22',
-    'st_inirUrl': 'https%3A%2F%2Fwww.baidu.com%2Flink',
-    'st_sn': '3',
-    'st_psi': '20200323121103181-117001301474-1629085889',
-}
+import redis
 import config
+from settings import get_proxy,headers,cookies
+
+document = 'dfcf_list_full'
+RETRY=3
+REDIS_KEY='code_list'
+r=redis.StrictRedis('192.168.10.48',db=5,decode_responses=True)
+db=pymongo.MongoClient('192.168.10.48',port=17001)
+doc=db['db_stock'][document]
+
 END_DATE='2018-12-01'
 
-def get_proxy(retry=10):
-    count = 0
-    proxyurl = 'http://{}:8101/dynamicIp/common/getDynamicIp.do'.format(
-        config.PROXIES_OLD)
-    for i in range(retry):
-        try:
-            r = requests.get(proxyurl, timeout=10)
-            # print('获取的代理ip ' + r.text)
-        except Exception as e:
-            print(e)
-            count += 1
-            print('代理获取失败,重试' + str(count))
-            time.sleep(1)
-
-        else:
-            js = r.json()
-            proxyServer = 'http://{0}:{1}'.format(js.get('ip'), js.get('port'))
-            proxies_random = {
-                'http': proxyServer
-            }
-            return proxies_random
-
-headers = {
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-    'Referer': 'http://guba.eastmoney.com/list,300750_2.html',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'zh,en;q=0.9,en-US;q=0.8',
-}
-import pandas as pd
-import redis
-r=redis.StrictRedis('192.168.10.48',db=2,decode_responses=True)
-
-retry=3
 def redis_seed():
-    while 1:
-        code=r.lpop('code_list')
+    keys = r.keys()
+    for code in keys:
+        print('current code {}'.format(code))
+        start_page=r.get(code)
         stop_flag = False
-        start_page = 1
-
-        while not code:
+        # start_page = 1
+        start_page=int(start_page)
+        while 1:
             if stop_flag:
                 print('完成一个')
                 break
 
             start=1
-            while start<retry:
+            while start<RETRY:
                 proxy = get_proxy()
 
                 try:
@@ -86,14 +47,15 @@ def redis_seed():
                     start+=1
                 else:
                     break
-            if start==retry:
+
+            if start==RETRY:
                 continue
 
             text=response.text
             resp=Selector(text=text)
 
             detail=resp.xpath('//div[@id="articlelistnew"]/div[@class="articleh normal_post" or @class="articleh normal_post odd"]')
-            print('page {}'.format(start_page))
+            # print('page {}'.format(start_page))
             c=0
 
             for item in detail:
@@ -108,7 +70,8 @@ def redis_seed():
                 d={}
                 d['code']=code
                 d['title']=title
-                d['page_count']='page_{}-count_{}'.format(start_page,c)
+                d['page']=start_page
+                d['count']=c
                 d['read_count']=read_ount
                 d['author']=author
                 d['comment_count']=comment_ount
@@ -123,8 +86,9 @@ def redis_seed():
 
             start_ = 0
             start_page += 1
+            r.set(code,start_page)
 
-            while start_<retry:
+            while start_<RETRY:
 
                 try:
                     proxy = get_proxy()
@@ -139,7 +103,7 @@ def redis_seed():
                 else:
                     break
 
-            if start_==retry:
+            if start_==RETRY:
                 continue
 
             resp_detail=response_detail.text
@@ -160,8 +124,6 @@ def redis_seed():
                 stop_flag=True
 
 
-        # r.srem('code_list',code)
-
 def manual_seed():
     seed_list=[
         {'code':'601238','page':90},
@@ -181,7 +143,7 @@ def manual_seed():
                 break
 
             start=1
-            while start<retry:
+            while start<RETRY:
                 proxy = get_proxy()
 
                 try:
@@ -193,7 +155,7 @@ def manual_seed():
                     start+=1
                 else:
                     break
-            if start==retry:
+            if start==RETRY:
                 continue
 
             text=response.text
@@ -231,7 +193,7 @@ def manual_seed():
             start_ = 0
             start_page += 1
 
-            while start_<retry:
+            while start_<RETRY:
 
                 try:
                     proxy = get_proxy()
@@ -246,7 +208,7 @@ def manual_seed():
                 else:
                     break
 
-            if start_==retry:
+            if start_==RETRY:
                 continue
 
             resp_detail=response_detail.text
@@ -268,5 +230,6 @@ def manual_seed():
 
 
 if __name__=='__main__':
-    # redis_seed()
-    manual_seed()
+    redis_seed()
+    # manual_seed()
+
