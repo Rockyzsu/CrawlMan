@@ -12,7 +12,7 @@ from scrapy.exceptions import DropItem
 
 class AsyncSQLPipeline(object):
     def __init__(self):
-        self.dbpool = adbapi.ConnectionPool('pymysql',host='192.168.1.100',port=3306,user='root',password='123456z',db='spider_test')
+        self.dbpool = adbapi.ConnectionPool('pymysql',host='192.168.1.100',port=3306,user='root',password='*',db='spider_test')
         # self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):

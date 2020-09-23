@@ -88,6 +88,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-MYSQL_DB_URI='mysql+pymysql://root:123456z@127.0.0.1:3306/spider?charset=utf8'
+MYSQL_DB_URI='mysql+pymysql://root:*@127.0.0.1:3306/spider?charset=utf8'
 MONGODB=''
 ES_HOST='10.18.6.102'
