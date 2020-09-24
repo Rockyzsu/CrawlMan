@@ -28,7 +28,9 @@ Download/
 Download_IMG/
 *.zip
 cookies
+config.json
 config.py
+data.cfg
 setting.py
 setttings.py
 *.ts
@@ -37,3 +39,6 @@ kc0011/jobs/requests.queue/p0
 kc0011/jobs/requests.queue/active.json
 kc0011/jobs/spider.state
 kc0011/jobs/requests.seen
+*.jpg
+*.png
+*.jpeg

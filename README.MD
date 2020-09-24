@@ -1,6 +1,7 @@
 ## 爬虫合集
 * 51CTOCrawler: 爬取51CTO的视频，并通过ffmpeg合并
 * 51jbnet: 51脚本内容爬取
+* 52sh: 台湾52社区网站 妹子图片爬取
 * anjuke:安居客爬虫
 * async_cuiqingcai: 异步爬取崔庆才博客内容
 * baiduwanpan: 暴力破解百度网盘密码
