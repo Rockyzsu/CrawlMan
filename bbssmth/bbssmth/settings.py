@@ -8,7 +8,7 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+from bbssmth import config
 BOT_NAME = 'bbssmth'
 
 SPIDER_MODULES = ['bbssmth.spiders']
@@ -26,7 +26,7 @@ CONCURRENT_REQUESTS = 2
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2
+# DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -58,7 +58,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'bbssmth.middlewares.BbssmthDownloaderMiddleware': 543,
+   'bbssmth.middlewares.BbssmthDownloaderMiddleware': None,
 }
 
 # Enable or disable extensions
@@ -74,7 +74,7 @@ ITEM_PIPELINES = {
 # 'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline':200,
 }
 
-ES_HOST='10.18.6.102'
+ES_HOST=config.ES_HOST
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

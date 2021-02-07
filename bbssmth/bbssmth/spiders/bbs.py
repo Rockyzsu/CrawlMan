@@ -57,6 +57,7 @@ class BbsSMTH(Spider):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest',
     }
+    stop = False
 
     def start_requests(self):
         yield FormRequest(self.log_url, formdata=self.formdata, headers=self.headers, callback=self.update_cookie)
@@ -81,7 +82,6 @@ class BbsSMTH(Spider):
         )
 
     def parse(self, response):
-        # print(response.text)
 
         if '过于频繁' in response.text:
             print('被封了')
@@ -94,6 +94,7 @@ class BbsSMTH(Spider):
             return
         pages = counts // 30 + 1
         print(pages)
+        pages=300
         for i in range(1, pages + 1):
             yield Request(
                 url=self.url.format(board) + '&p={}'.format(i),
@@ -105,16 +106,15 @@ class BbsSMTH(Spider):
 
     def parse_item(self, response):
         root = response.xpath('//table[@class="board-list tiz"]//tr')
-        print(response.text)
         for item in root[1:]:
             url = item.xpath('.//td[@class="title_8"]/a/@href').extract_first()
             if url is None:
                 continue
             full_url = 'http://www.newsmth.net' + url
             create_time = item.xpath('.//td[@class="title_10"]/text()').extract_first()
+            print(create_time)
             title = item.xpath('.//td[@class="title_9"]/a/text()').extract_first()
-            print(full_url)
-
+            # if create_time > '2020-01-01': 
             yield Request(url=full_url, callback=self.parse_content,
                           meta={'create_time': create_time, 'board': response.meta['board'],
                                 'title': title,
@@ -154,7 +154,6 @@ class BbsSMTH(Spider):
                 bbsItem[field] = eval(field)
             except Exception as e:
                 pass
-        print(bbsItem)
         yield bbsItem
 
     def pretty(self, content):

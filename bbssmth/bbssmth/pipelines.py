@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import logging
-from scrapy import log
+from logging import log
 from elasticsearch import Elasticsearch
 from bbssmth.settings import ES_HOST
 
@@ -24,12 +24,10 @@ class BbssmthPipeline(object):
             'author': item.get('author'),
             'crawltime': item.get('crawltime'),
             'reply': item.get('reply'),
-            'category': item.get('category')
+            'category': item.get('category'),
+            'create_time':item.get('create_time'),
 
         }
-        print('回复内容')
-        print(item.get('reply'))
-
 
         try:
             self.es.index(index=self.index, doc_type=self.doc, body=body)
